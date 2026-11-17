@@ -11,7 +11,7 @@ const LINK_ORE = 24;
 export default async function handler(req, res) {
   if (soloPost(req, res)) return;
   const b = body(req);
-  if (b.sito) return res.status(200).json({ ok: true, url: "/download/intelligenza-fiscale.pdf" }); // il libro è gratuito: anche nel dubbio lo diamo
+  if (b.sito) return res.status(200).json({ ok: true, salvato: "filtro_antispam", url: "/download/intelligenza-fiscale.pdf" }); // il libro è gratuito: anche nel dubbio lo diamo
 
   const nome = clip(b.nome, 120);
   const email = clip(b.email, 160).toLowerCase();
@@ -31,7 +31,8 @@ export default async function handler(req, res) {
     console.error("Supabase", r.status, r.text);
     return res.status(502).json({ error: "Richiesta non riuscita. Riprova tra poco." });
   }
-  if (Array.isArray(r.data) && r.data.length) {
+  const nuovo = Array.isArray(r.data) && r.data.length > 0;
+  if (nuovo) {
     await notifica(`Libro scaricato: ${nome}`, { Nome: nome, Email: email, Libro: "Intelligenza Fiscale" }, email);
   }
 
@@ -47,5 +48,5 @@ export default async function handler(req, res) {
       if (signed) link = `${url}/storage/v1${signed.startsWith("/") ? "" : "/"}${signed}&download=Intelligenza-Fiscale.pdf`;
     }
   } catch (e) { console.error(e); }
-  return res.status(200).json({ ok: true, url: link || "/download/intelligenza-fiscale.pdf" });
+  return res.status(200).json({ ok: true, salvato: nuovo ? "nuovo" : "gia_presente", url: link || "/download/intelligenza-fiscale.pdf" });
 }

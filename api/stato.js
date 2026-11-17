@@ -43,6 +43,13 @@ export default async function handler(req, res) {
     };
     out.tabelle = {};
     for (const t of ["richieste", "richieste_libro", "iscritti", "post_social", "staff", "articoli"]) out.tabelle[t] = await check(`/rest/v1/${t}?select=*&limit=1`);
+    out.righe = {};
+    for (const t of ["richieste", "richieste_libro", "iscritti", "articoli"]) {
+      try {
+        const r = await fetch(`${url}/rest/v1/${t}?select=id`, { headers: { ...h, Prefer: "count=exact", Range: "0-0" } });
+        out.righe[t] = r.ok ? Number((r.headers.get("content-range") || "").split("/")[1] || 0) : "errore " + r.status;
+      } catch (e) { out.righe[t] = "errore"; }
+    }
     out.libro_pdf_su_storage = (await check("/storage/v1/object/info/libri/intelligenza-fiscale.pdf")) === "ok" ? "sì" : "no (si usa la copia nel sito)";
     try {
       const r = await fetch(`${url}/rest/v1/impostazioni?chiave=in.(social_sync,social_esito)&select=chiave,valore`, { headers: h });

@@ -1479,7 +1479,8 @@ window.SL.invia=function(url,dati,msg,form,okTesto){
     if(t==='libro'){
       window.SL.invia('/api/libro',{nome:v('nome'),email:v('email'),privacy:v('privacy')},m,f,'Grazie! Il download sta partendo.').then(function(j){
         if(j){var u=j.url||'/download/intelligenza-fiscale.pdf';
-          m.innerHTML='Grazie! Ecco il tuo libro: <a href="'+esc(u)+'" target="_blank" rel="noopener" class="btn btn-blue" style="margin-left:8px;padding:12px 20px">Apri Intelligenza Fiscale (PDF)</a>';}
+          m.innerHTML='Grazie! Ecco il tuo libro: <a href="'+esc(u)+'" target="_blank" rel="noopener" class="btn btn-blue" style="margin-left:8px;padding:12px 20px">Apri Intelligenza Fiscale (PDF)</a>';
+          if(j.salvato&&window.console)console.log('libro:',j.salvato);}
       });
     }else if(t==='iscrizione'){
       window.SL.invia('/api/iscrizione',{email:v('email'),consenso:v('consenso'),lista:f.getAttribute('data-lista')},m,f,
