@@ -7,7 +7,7 @@ import { body, clip, config, db, emailOk, soloPost } from "./_lib.js";
 export default async function handler(req, res) {
   if (soloPost(req, res)) return;
   const b = body(req);
-  if (b.sito) return res.status(200).json({ ok: true });
+  if (typeof b.t === "number" && b.t < 1500) return res.status(200).json({ ok: true });
 
   const email = clip(b.email, 160).toLowerCase();
   const lista = b.lista === "elevate" ? "elevate" : "blog";

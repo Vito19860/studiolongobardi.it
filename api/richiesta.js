@@ -18,7 +18,7 @@ function qualifica(q) {
 export default async function handler(req, res) {
   if (soloPost(req, res)) return;
   const b = body(req);
-  if (b.sito) return res.status(200).json({ ok: true }); // campo trappola anti-spam
+  if (typeof b.t === "number" && b.t < 1500) return res.status(200).json({ ok: true }); // anti-spam: invio troppo veloce per una persona
 
   const tipo = b.tipo === "test" ? "test" : "contatto";
   const nome = clip(b.nome, 120);
