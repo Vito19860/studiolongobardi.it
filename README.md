@@ -45,8 +45,8 @@ supabase/articoli-iniziali.sql  i 7 articoli dal giornale dello studio
 | `SUPABASE_SERVICE_ROLE_KEY` | chiave secret / service_role (solo qui, mai nel sito) |
 | `SUPABASE_ANON_KEY` | chiave publishable / anon |
 | `SMTP_USER`, `SMTP_PASS` | casella Aruba che invia gli avvisi |
-| `NOTIFICA_EMAIL` | chi riceve richieste e articoli da approvare (direzione) |
-| `MARKETING_EMAIL` | chi del marketing riceve gli articoli da approvare |
+| `NOTIFICA_EMAIL` | vito@studiolongobardi.it (richieste dal sito e articoli da approvare) |
+| `MARKETING_EMAIL` | marketing@studiolongobardi.it (articoli da approvare) |
 | `META_PAGE_ID`, `META_PAGE_TOKEN` | pagina Facebook dello studio e suo token (vedi punto 4) |
 | `CRON_SECRET` | una parola lunga a caso: protegge l'aggiornamento forzato dei post |
 
@@ -54,14 +54,8 @@ supabase/articoli-iniziali.sql  i 7 articoli dal giornale dello studio
 4. **Settings → Spend Management**: stesso budget e "Pause production deployment" del sito personale.
 
 ### 3. Staff del blog
-1. Supabase → **Authentication → Users → Invite user**: un invito per ogni persona (riceve l'email, sceglie la password su /staff).
-2. **SQL Editor**, una riga per persona (`ruolo`: `direzione`, `marketing` oppure `autore`):
-
-```sql
-insert into public.staff (user_id, nome, qualifica, foto, ruolo)
-select id, 'Vito Longobardi', 'Fondatore · Fisco e strategia', 'img/vito.jpg', 'direzione' from auth.users where email = 'EMAIL-DI-VITO'
-on conflict (user_id) do update set ruolo = excluded.ruolo, nome = excluded.nome;
-```
+1. Dopo il primo deploy su Vercel (l'invito porta alla pagina /staff, che deve esistere). Supabase → **Authentication → Users → Invite user**: un invito per ogni persona (riceve l'email, sceglie la password su /staff).
+2. **SQL Editor**: esegui `supabase/staff.sql` (Vito = direzione, marketing@ = marketing). Per altri autori copia un blocco del file e metti ruolo `autore`.
 
 Un articolo va online solo con **entrambe** le approvazioni (direzione + marketing). Se il testo cambia, le approvazioni ripartono.
 
