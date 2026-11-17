@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /staff
+Disallow: /download/
+Disallow: /api/
+Sitemap: https://www.studiolongobardi.it/sitemap.xml

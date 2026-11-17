@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Area staff · Studio Longobardi</title>
+<style>
+@font-face{font-family:Montserrat;src:url(fonts/montserrat.woff) format("woff");font-weight:500 800;font-display:swap}
+@font-face{font-family:Inter;src:url(fonts/inter.woff) format("woff");font-weight:400 600;font-display:swap}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#F3F6FB;color:#0F2C5C;font-size:16px}
+a{color:#9A6F1E}
+.mont{font-family:Montserrat,Inter,sans-serif}.up{text-transform:uppercase;letter-spacing:.1em}
+header{background:#0F2C5C;color:#fff}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.bar{display:flex;align-items:center;gap:16px;min-height:72px;flex-wrap:wrap}
+.bar img{height:38px}
+.btn{font:700 13px Montserrat,Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;border:0;border-radius:2px;padding:13px 20px;cursor:pointer;min-height:44px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn:disabled{opacity:.5;cursor:default}
+.gold{background:#D4A24C;color:#0A1F44}.blue{background:#0F2C5C;color:#fff}.line{background:#fff;color:#0F2C5C;border:1px solid #C9D3E3}.red{background:#fff;color:#A33A35;border:1px solid #E5B9B6}.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+input,select,textarea{font:inherit;font-size:16px;padding:12px;border:1px solid #C9D3E3;border-radius:2px;background:#fff;color:#0F2C5C;width:100%}
+textarea{min-height:360px;line-height:1.6;resize:vertical}
+label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}
+.card{background:#fff;border:1px solid #E2E8F1;border-radius:2px}
+.box{max-width:420px;margin:70px auto;padding:34px;display:flex;flex-direction:column;gap:14px}
+.msg{font-size:14px;color:#9A6F1E;min-height:20px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 18px}
+.tab{font:700 12px Montserrat,Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border:1px solid #C9D3E3;border-radius:999px;background:#fff;color:#0F2C5C;cursor:pointer;min-height:40px}
+.tab.on{background:#0F2C5C;color:#fff;border-color:#0F2C5C}
+.lista{display:flex;flex-direction:column;gap:10px}
+.riga{display:flex;gap:16px;align-items:center;padding:16px 18px;cursor:pointer;flex-wrap:wrap}
+.riga:hover{border-color:#D4A24C}
+.riga b{font-size:17px}
+.stato{font:800 11px Montserrat,Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:2px;white-space:nowrap}
+.s-bozza{background:#E9EEF6;color:#5E6B85}.s-in_revisione{background:#FBF1DF;color:#9A6F1E}.s-pubblicato{background:#E3F3EA;color:#2E7D55}.s-respinto{background:#FBE7E6;color:#A33A35}
+.ok{font-size:13px;color:#5E6B85}.ok i{font-style:normal;color:#2E7D55;font-weight:700}
+.ed{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;margin:24px 0 60px}
+@media(max-width:900px){.ed{grid-template-columns:1fr}}
+.campi{padding:24px;display:flex;flex-direction:column;gap:14px}
+.aiuto{font-size:13px;color:#5E6B85;line-height:1.6;background:#F3F6FB;padding:10px 12px;border-radius:2px}
+.anteprima{padding:30px;font-size:17px;line-height:1.75;color:#3A4762;overflow:auto;max-height:80vh}
+.anteprima h1{font:800 32px/1.15 Montserrat,Inter,sans-serif;color:#0F2C5C;margin:0 0 12px}
+.anteprima h2{font:800 22px/1.25 Montserrat,Inter,sans-serif;color:#0F2C5C;margin:30px 0 10px}
+.anteprima .lead{font-size:20px;color:#0F2C5C;font-weight:500}
+.anteprima img.cop{width:100%;height:200px;object-fit:cover;border-radius:2px;margin-bottom:18px}
+.azioni{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.nota{background:#FBE7E6;color:#A33A35;padding:12px 14px;border-radius:2px;font-size:14px}
+.approva{border-top:3px solid #D4A24C;padding:20px 24px;display:flex;flex-direction:column;gap:12px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a href="/"><img src="img/logo-chiaro.png" alt="Studio Longobardi"></a>
+  <span class="mont up" style="font-size:13px;font-weight:800;color:#E9BE6E">Area staff · Blog</span>
+  <span id="chi" style="margin-left:auto;font-size:14px;color:#D3DDEE"></span>
+  <button id="esci" class="btn ghost" hidden>Esci</button>
+</div></header>
+
+<!-- ACCESSO -->
+<main id="v-login" hidden>
+  <form id="f-login" class="card box">
+    <span class="mont up" style="font-size:18px;font-weight:800">Accedi</span>
+    <label>Email<input name="email" type="email" required autocomplete="username"></label>
+    <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+    <button class="btn blue" type="submit">Entra</button>
+    <button class="btn line" type="button" id="dimenticata">Ho dimenticato la password</button>
+    <span class="msg"></span>
+  </form>
+</main>
+
+<!-- NUOVA PASSWORD (invito o recupero) -->
+<main id="v-password" hidden>
+  <form id="f-password" class="card box">
+    <span class="mont up" style="font-size:18px;font-weight:800">Scegli la tua password</span>
+    <label>Nuova password (almeno 10 caratteri)<input name="p1" type="password" required minlength="10" autocomplete="new-password"></label>
+    <label>Ripetila<input name="p2" type="password" required minlength="10" autocomplete="new-password"></label>
+    <button class="btn blue" type="submit">Salva e entra</button>
+    <span class="msg"></span>
+  </form>
+</main>
+
+<!-- ELENCO -->
+<main id="v-elenco" class="wrap" hidden>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-top:34px">
+    <div><span class="mont up" style="font-size:12px;font-weight:800;color:#9A6F1E">Il blog dello studio</span><h1 class="mont" style="margin:6px 0 0;font-size:34px;font-weight:800">Articoli</h1></div>
+    <button class="btn gold" id="nuovo">+ Nuovo articolo</button>
+  </div>
+  <p style="color:#5E6B85;max-width:760px;margin:12px 0 0">Ogni articolo va online solo quando lo approvano <b>sia la direzione sia il marketing</b>. Se modifichi un articolo già approvato, le approvazioni ripartono.</p>
+  <div class="tabs" id="tabs"></div>
+  <div class="lista" id="lista"></div>
+</main>
+
+<!-- EDITOR -->
+<main id="v-editor" class="wrap" hidden>
+  <div style="margin-top:26px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <button class="btn line" id="indietro">← Tutti gli articoli</button>
+    <span id="e-stato"></span><span id="e-ok" class="ok"></span>
+  </div>
+  <div id="e-nota" class="nota" style="margin-top:16px" hidden></div>
+  <div class="ed">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <form id="f-art" class="card campi">
+        <label>Titolo<input name="titolo" required maxlength="160"></label>
+        <label>Categoria<select name="categoria"><option>Fisco</option><option>Lavoro</option><option>Controllo di gestione</option><option>Holding</option><option>Crescita</option></select></label>
+        <label>Sommario (una o due frasi, compare nelle anteprime)<textarea name="sommario" maxlength="300" style="min-height:80px"></textarea></label>
+        <label>Immagine di copertina<select name="immagine" id="sel-img"></select></label>
+        <label style="font-weight:500;font-size:13px">Oppure carica una foto (JPG o PNG, max 4 MB)<input type="file" id="file-img" accept="image/jpeg,image/png,image/webp"></label>
+        <label>Testo<textarea name="corpo" required></textarea></label>
+        <div class="aiuto">Come scrivere: <b>una riga = un paragrafo</b>. Riga che inizia con <code>## </code> = sottotitolo. Riga che inizia con <code>- </code> = punto elenco. <code>**parole**</code> = grassetto.</div>
+        <div class="azioni" id="az-autore">
+          <button class="btn line" type="button" id="salva">Salva bozza</button>
+          <button class="btn gold" type="button" id="invia">Invia in approvazione</button>
+          <button class="btn red" type="button" id="elimina" hidden>Elimina</button>
+        </div>
+        <span class="msg" id="e-msg"></span>
+      </form>
+      <div class="card approva" id="box-approva" hidden>
+        <span class="mont up" style="font-size:13px;font-weight:800">Approvazione</span>
+        <div class="azioni">
+          <button class="btn blue" type="button" id="approva"></button>
+          <button class="btn red" type="button" id="rimanda">Rimanda all'autore</button>
+        </div>
+        <label id="lab-nota" hidden>Cosa va cambiato?<textarea id="nota" style="min-height:90px"></textarea><button class="btn red" type="button" id="conferma-rimanda" style="align-self:flex-start;margin-top:6px">Invia la nota</button></label>
+      </div>
+    </div>
+    <div class="card anteprima" id="anteprima"></div>
+  </div>
+</main>
+
+<script>
+(function(){
+var CFG=null,S=null,ME=null,ART=[],CUR=null,TAB='tutti';
+var IMG=[['img/colonnato.jpg','Colonnato'],['img/palco.jpg','Palco di Elevate'],['img/elevate-sala.jpg','Sala di Elevate'],['img/squadra.jpg','La squadra'],['img/accoglienza.jpg','Accoglienza'],['img/vito-palco.jpg','Vito sul palco']];
+var $=function(s){return document.querySelector(s)};
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function vista(id){['v-login','v-password','v-elenco','v-editor'].forEach(function(v){$('#'+v).hidden=v!==id});window.scrollTo(0,0)}
+function msg(el,t){(typeof el==='string'?$(el):el).textContent=t||''}
+
+/* --- sessione (resta solo in questa scheda del browser) --- */
+function salvaS(j){S={access_token:j.access_token,refresh_token:j.refresh_token,scade:Date.now()+(j.expires_in||3600)*1000,uid:(j.user&&j.user.id)||S&&S.uid};try{sessionStorage.setItem('sl_staff',JSON.stringify(S))}catch(e){}}
+function leggiS(){try{S=JSON.parse(sessionStorage.getItem('sl_staff'))}catch(e){S=null}}
+function auth(path,body,token){return fetch(CFG.url+'/auth/v1/'+path,{method:body?'POST':'GET',headers:Object.assign({apikey:CFG.anon,'Content-Type':'application/json'},token?{Authorization:'Bearer '+token}:{}),body:body?JSON.stringify(body):undefined}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok)throw new Error(j.error_description||j.msg||j.message||'Errore '+r.status);return j})})}
+function token(){
+  if(S&&S.scade-Date.now()>60000)return Promise.resolve(S.access_token);
+  if(!S||!S.refresh_token)return Promise.reject(new Error('Accesso scaduto'));
+  return auth('token?grant_type=refresh_token',{refresh_token:S.refresh_token}).then(function(j){salvaS(j);return S.access_token});
+}
+function api(path,opt){
+  opt=opt||{};
+  return token().then(function(t){
+    return fetch(CFG.url+'/rest/v1/'+path,{method:opt.method||'GET',headers:Object.assign({apikey:CFG.anon,Authorization:'Bearer '+t,'Content-Type':'application/json'},opt.prefer?{Prefer:opt.prefer}:{}),body:opt.body?JSON.stringify(opt.body):undefined});
+  }).then(function(r){return r.text().then(function(x){var j=null;try{j=x?JSON.parse(x):null}catch(e){}if(!r.ok)throw new Error((j&&(j.message||j.hint))||'Errore '+r.status);return j})});
+}
+function avvisa(id){token().then(function(t){fetch('/api/avviso',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+t},body:JSON.stringify({id:id})}).catch(function(){})})}
+
+/* --- avvio --- */
+fetch('/api/config').then(function(r){if(!r.ok)throw new Error();return r.json()}).then(function(c){
+  CFG=c;
+  var h=new URLSearchParams(location.hash.slice(1));
+  if(h.get('access_token')&&/invite|recovery|signup|magiclink/.test(h.get('type')||'')){
+    salvaS({access_token:h.get('access_token'),refresh_token:h.get('refresh_token'),expires_in:+h.get('expires_in')||3600});
+    history.replaceState(null,'',location.pathname);vista('v-password');return;
+  }
+  if(h.get('error_description')){history.replaceState(null,'',location.pathname);vista('v-login');msg('#f-login .msg',h.get('error_description').replace(/\+/g,' '));return;}
+  leggiS(); if(S)entra(); else vista('v-login');
+}).catch(function(){document.body.insertAdjacentHTML('beforeend','<p class="wrap" style="margin-top:40px">L\'area staff non è ancora configurata (manca SUPABASE_ANON_KEY su Vercel).</p>')});
+
+$('#f-login').addEventListener('submit',function(e){
+  e.preventDefault();var f=e.target;msg('#f-login .msg','Accesso in corso…');
+  auth('token?grant_type=password',{email:f.email.value.trim(),password:f.password.value}).then(function(j){salvaS(j);entra()})
+  .catch(function(){msg('#f-login .msg','Email o password non corretti.')});
+});
+$('#dimenticata').addEventListener('click',function(){
+  var em=$('#f-login [name=email]').value.trim();
+  if(!em){msg('#f-login .msg','Scrivi prima la tua email qui sopra.');return}
+  auth('recover?redirect_to='+encodeURIComponent(location.origin+'/staff'),{email:em}).then(function(){msg('#f-login .msg','Se l\'email è dello staff, ti abbiamo mandato un link per scegliere una nuova password.')})
+  .catch(function(e){msg('#f-login .msg',e.message)});
+});
+$('#f-password').addEventListener('submit',function(e){
+  e.preventDefault();var f=e.target;
+  if(f.p1.value!==f.p2.value){msg('#f-password .msg','Le due password non coincidono.');return}
+  token().then(function(t){return fetch(CFG.url+'/auth/v1/user',{method:'PUT',headers:{apikey:CFG.anon,Authorization:'Bearer '+t,'Content-Type':'application/json'},body:JSON.stringify({password:f.p1.value})})})
+  .then(function(r){if(!r.ok)return r.json().then(function(j){throw new Error(j.msg||j.message||'Password non accettata')});entra()})
+  .catch(function(e){msg('#f-password .msg',e.message)});
+});
+$('#esci').addEventListener('click',function(){token().then(function(t){return auth('logout',{},t)}).catch(function(){}).then(function(){S=null;try{sessionStorage.removeItem('sl_staff')}catch(e){}location.reload()})});
+
+function entra(){
+  token().then(function(t){return auth('user',null,t)}).then(function(u){S.uid=u.id;return api('staff?user_id=eq.'+u.id+'&select=*')})
+  .then(function(r){
+    if(!r||!r.length||!r[0].attivo){vista('v-login');msg('#f-login .msg','Il tuo account non è ancora abilitato: chiedi a Vito di aggiungerti allo staff.');return}
+    ME=r[0];$('#chi').textContent=ME.nome+' · '+({autore:'Autore',direzione:'Direzione',marketing:'Marketing'})[ME.ruolo];$('#esci').hidden=false;
+    elenco();
+  }).catch(function(){S=null;try{sessionStorage.removeItem('sl_staff')}catch(e){}vista('v-login')});
+}
+
+/* --- elenco --- */
+var NOMI={bozza:'Bozza',in_revisione:'In approvazione',pubblicato:'Online',respinto:'Da rivedere'};
+function approvatore(){return ME.ruolo==='direzione'||ME.ruolo==='marketing'}
+function daMe(a){return a.stato==='in_revisione'&&((ME.ruolo==='direzione'&&!a.ok_direzione)||(ME.ruolo==='marketing'&&!a.ok_marketing))}
+function elenco(){
+  vista('v-elenco');
+  api('articoli?select=*&order=aggiornato_il.desc').then(function(r){ART=r||[];disegna()}).catch(function(e){$('#lista').textContent=e.message});
+}
+function disegna(){
+  var T=[['tutti','Tutti'],['miei','I miei']];
+  if(approvatore())T.unshift(['approvare','Da approvare ('+ART.filter(daMe).length+')']);
+  T.push(['in_revisione','In approvazione'],['pubblicato','Online']);
+  if(approvatore()&&TAB==='tutti'&&ART.filter(daMe).length&&!disegna.fatto){TAB='approvare';disegna.fatto=1}
+  $('#tabs').innerHTML=T.map(function(t){return '<button class="tab'+(t[0]===TAB?' on':'')+'" data-t="'+t[0]+'">'+t[1]+'</button>'}).join('');
+  [].forEach.call(document.querySelectorAll('.tab'),function(b){b.onclick=function(){TAB=b.dataset.t;disegna()}});
+  var L=ART.filter(function(a){return TAB==='tutti'||(TAB==='miei'&&a.autore_id===S.uid)||(TAB==='approvare'&&daMe(a))||a.stato===TAB});
+  $('#lista').innerHTML=L.length?L.map(function(a){
+    return '<div class="card riga" data-id="'+a.id+'"><span class="stato s-'+a.stato+'">'+NOMI[a.stato]+'</span><span style="flex:1 1 300px;display:flex;flex-direction:column;gap:3px"><b>'+esc(a.titolo)+'</b><span class="ok">'+esc(a.categoria)+' · '+esc(a.autore_nome)+' · modificato il '+new Date(a.aggiornato_il).toLocaleDateString('it-IT')+'</span></span>'
+     +'<span class="ok">Direzione '+(a.ok_direzione?'<i>✓</i>':'–')+' · Marketing '+(a.ok_marketing?'<i>✓</i>':'–')+'</span></div>';
+  }).join(''):'<p style="color:#5E6B85">Nessun articolo qui.</p>';
+  [].forEach.call(document.querySelectorAll('.riga'),function(d){d.onclick=function(){apri(ART.filter(function(a){return a.id===+d.dataset.id})[0])}});
+}
+$('#nuovo').addEventListener('click',function(){apri(null)});
+$('#indietro').addEventListener('click',elenco);
+
+/* --- editor --- */
+var F=$('#f-art');
+function opzioniImg(cur){
+  var L=IMG.slice();if(cur&&!L.some(function(x){return x[0]===cur}))L.unshift([cur,'Foto caricata']);
+  $('#sel-img').innerHTML=L.map(function(x){return '<option value="'+esc(x[0])+'"'+(x[0]===cur?' selected':'')+'>'+esc(x[1])+'</option>'}).join('');
+}
+function apri(a){
+  CUR=a;vista('v-editor');msg('#e-msg','');
+  F.titolo.value=a?a.titolo:'';F.categoria.value=a?a.categoria:'Fisco';F.sommario.value=a?a.sommario||'':'';F.corpo.value=a?a.corpo:'';
+  opzioniImg(a?a.immagine:'img/colonnato.jpg');
+  var mio=!a||a.autore_id===S.uid, puo=mio||approvatore();
+  [].forEach.call(F.querySelectorAll('input,select,textarea'),function(x){x.disabled=!puo});
+  $('#az-autore').hidden=!puo;
+  $('#invia').hidden=a&&a.stato==='pubblicato';
+  $('#invia').textContent=a&&a.stato==='in_revisione'?'Salva modifiche':'Invia in approvazione';
+  $('#elimina').hidden=!a||!(approvatore()||(mio&&(a.stato==='bozza'||a.stato==='respinto')));
+  $('#e-stato').innerHTML=a?'<span class="stato s-'+a.stato+'">'+NOMI[a.stato]+'</span>':'<span class="stato s-bozza">Nuovo</span>';
+  $('#e-ok').innerHTML=a?'Direzione '+(a.ok_direzione?'<i>✓ approvato</i>':'in attesa')+' · Marketing '+(a.ok_marketing?'<i>✓ approvato</i>':'in attesa'):'';
+  $('#e-nota').hidden=!(a&&a.stato==='respinto'&&a.nota_revisione);$('#e-nota').textContent=a&&a.nota_revisione?'Nota per l\'autore: '+a.nota_revisione:'';
+  var box=$('#box-approva');box.hidden=!(a&&approvatore()&&a.stato==='in_revisione');$('#lab-nota').hidden=true;
+  if(!box.hidden){var gia=ME.ruolo==='direzione'?a.ok_direzione:a.ok_marketing;$('#approva').textContent=gia?'Hai già approvato':'Approva come '+ME.ruolo;$('#approva').disabled=gia;}
+  anteprima();
+}
+function inl(x){return esc(x).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
+function testo(t){var o=[],li=null;String(t||'').split(/\r?\n/).forEach(function(l){l=l.trim();if(/^[-•]\s+/.test(l)){(li=li||[]).push('<li>'+inl(l.replace(/^[-•]\s+/,''))+'</li>');return}if(li){o.push('<ul>'+li.join('')+'</ul>');li=null}if(!l)return;o.push(/^##\s+/.test(l)?'<h2>'+inl(l.replace(/^##\s+/,''))+'</h2>':'<p>'+inl(l)+'</p>')});if(li)o.push('<ul>'+li.join('')+'</ul>');return o.join('')}
+function anteprima(){
+  $('#anteprima').innerHTML='<span class="mont up" style="font-size:11px;font-weight:800;color:#9A6F1E">Anteprima · '+esc(F.categoria.value)+'</span>'
+   +'<img class="cop" src="'+esc(F.immagine.value)+'" alt=""><h1>'+esc(F.titolo.value||'Titolo dell\'articolo')+'</h1>'
+   +(F.sommario.value?'<p class="lead">'+esc(F.sommario.value)+'</p>':'')+testo(F.corpo.value);
+}
+F.addEventListener('input',anteprima);F.addEventListener('change',anteprima);
+
+function slugify(t){return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60)||'articolo'}
+function dati(){return{titolo:F.titolo.value.trim(),categoria:F.categoria.value,sommario:F.sommario.value.trim()||null,corpo:F.corpo.value,immagine:F.immagine.value}}
+function salva(stato){
+  var d=dati();if(!d.titolo||!d.corpo.trim()){msg('#e-msg','Servono almeno titolo e testo.');return Promise.reject()}
+  msg('#e-msg','Salvataggio…');
+  var p;
+  if(!CUR){
+    d.slug=slugify(d.titolo)+'-'+Date.now().toString(36).slice(-4);d.autore_id=S.uid;d.autore_nome=ME.nome;d.autore_ruolo=ME.qualifica||null;d.autore_foto=ME.foto||null;d.stato=stato||'bozza';
+    p=api('articoli',{method:'POST',body:d,prefer:'return=representation'});
+  }else{
+    if(stato)d.stato=stato;
+    p=api('articoli?id=eq.'+CUR.id,{method:'PATCH',body:d,prefer:'return=representation'});
+  }
+  return p.then(function(r){var a=r&&r[0];if(!a)throw new Error('Non hai i permessi per modificare questo articolo.');CUR=a;return a});
+}
+$('#salva').addEventListener('click',function(){salva(CUR&&CUR.stato==='in_revisione'?null:'bozza').then(function(a){apri(a);msg('#e-msg','Bozza salvata.')}).catch(function(e){if(e)msg('#e-msg',e.message)})});
+$('#invia').addEventListener('click',function(){
+  var era=CUR&&CUR.stato;
+  salva('in_revisione').then(function(a){apri(a);msg('#e-msg',a.stato==='pubblicato'?'Articolo online.':'Inviato: direzione e marketing riceveranno un avviso.');if(era!=='in_revisione'||a.stato==='in_revisione')avvisa(a.id)}).catch(function(e){if(e)msg('#e-msg',e.message)});
+});
+$('#elimina').addEventListener('click',function(){
+  if(!CUR||!confirm('Eliminare definitivamente questo articolo?'))return;
+  api('articoli?id=eq.'+CUR.id,{method:'DELETE'}).then(elenco).catch(function(e){msg('#e-msg',e.message)});
+});
+$('#approva').addEventListener('click',function(){
+  var b={};b[ME.ruolo==='direzione'?'ok_direzione':'ok_marketing']=true;
+  api('articoli?id=eq.'+CUR.id,{method:'PATCH',body:b,prefer:'return=representation'}).then(function(r){var a=r[0];apri(a);msg('#e-msg',a.stato==='pubblicato'?'Approvato: l\'articolo è online!':'Approvato. Manca l\'altra approvazione.');if(a.stato==='pubblicato')avvisa(a.id)}).catch(function(e){msg('#e-msg',e.message)});
+});
+$('#rimanda').addEventListener('click',function(){$('#lab-nota').hidden=false;$('#nota').focus()});
+$('#conferma-rimanda').addEventListener('click',function(){
+  var n=$('#nota').value.trim();if(!n){$('#nota').focus();return}
+  api('articoli?id=eq.'+CUR.id,{method:'PATCH',body:{stato:'respinto',nota_revisione:n},prefer:'return=representation'}).then(function(r){apri(r[0]);msg('#e-msg','Rimandato all\'autore con la tua nota.');avvisa(r[0].id)}).catch(function(e){msg('#e-msg',e.message)});
+});
+$('#file-img').addEventListener('change',function(e){
+  var f=e.target.files[0];if(!f)return;
+  if(f.size>4*1024*1024){msg('#e-msg','La foto supera 4 MB.');return}
+  msg('#e-msg','Caricamento della foto…');
+  var nome=Date.now().toString(36)+'-'+slugify(f.name.replace(/\.\w+$/,''))+'.'+(f.type==='image/png'?'png':f.type==='image/webp'?'webp':'jpg');
+  token().then(function(t){return fetch(CFG.url+'/storage/v1/object/blog/'+nome,{method:'POST',headers:{apikey:CFG.anon,Authorization:'Bearer '+t,'Content-Type':f.type},body:f})})
+  .then(function(r){if(!r.ok)throw new Error('Caricamento non riuscito');var u=CFG.url+'/storage/v1/object/public/blog/'+nome;opzioniImg(u);anteprima();msg('#e-msg','Foto caricata: ricordati di salvare.')})
+  .catch(function(e){msg('#e-msg',e.message)});
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "studiolongobardi-it",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sito dello Studio Longobardi · www.studiolongobardi.it",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "dependencies": { "nodemailer": "^6.9.16" }
+}
