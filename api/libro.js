@@ -15,25 +15,30 @@ export default async function handler(req, res) {
 
   const nome = clip(b.nome, 120);
   const email = clip(b.email, 160).toLowerCase();
+  const telefono = clip(b.telefono, 40);
   if (!nome) return res.status(400).json({ error: "Scrivi il tuo nome." });
   if (!emailOk(email)) return res.status(400).json({ error: "Controlla l'indirizzo email." });
+  if (telefono.replace(/\D/g, "").length < 6) return res.status(400).json({ error: "Inserisci un numero di telefono valido." });
   if (b.privacy !== true) return res.status(400).json({ error: "Serve il consenso all'informativa privacy." });
 
   const { url, key, ok } = config();
   if (!ok) return res.status(500).json({ error: "Configurazione mancante sul server" });
 
-  const r = await db("richieste_libro?on_conflict=email", {
-    method: "POST",
-    body: { nome, email, consenso_privacy: true },
-    prefer: "resolution=ignore-duplicates,return=representation",
+  const salva = (riga) => db("richieste_libro?on_conflict=email", {
+    method: "POST", body: riga, prefer: "resolution=ignore-duplicates,return=representation",
   }).catch((e) => ({ ok: false, text: String(e) }));
+  let r = await salva({ nome, email, telefono, consenso_privacy: true });
+  // se la colonna "telefono" non è ancora stata creata nel database, salva comunque nome ed email
+  if (!r.ok && /telefono/.test(r.text || "")) r = await salva({ nome, email, consenso_privacy: true });
   if (!r.ok) {
     console.error("Supabase", r.status, r.text);
     return res.status(502).json({ error: "Richiesta non riuscita. Riprova tra poco." });
   }
   const nuovo = Array.isArray(r.data) && r.data.length > 0;
+  // chi riscarica con la stessa email: aggiorniamo il telefono se prima mancava o è cambiato
+  if (!nuovo) await db(`richieste_libro?email=eq.${encodeURIComponent(email)}`, { method: "PATCH", body: { telefono }, prefer: "return=minimal" }).catch(() => {});
   if (nuovo) {
-    await notifica(`Libro scaricato: ${nome}`, { Nome: nome, Email: email, Libro: "Intelligenza Fiscale" }, email);
+    await notifica(`Libro scaricato: ${nome}`, { Nome: nome, Email: email, Telefono: telefono, Libro: "Intelligenza Fiscale" }, email);
   }
 
   let link = null;

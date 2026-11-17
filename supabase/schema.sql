@@ -33,6 +33,7 @@ create table if not exists public.richieste_libro (
   creata_il        timestamptz not null default now(),
   nome             text not null,
   email            text not null unique,
+  telefono         text,
   consenso_privacy boolean not null default false,
   download         integer not null default 1
 );
@@ -182,3 +183,6 @@ insert into storage.buckets (id, name, public) values ('blog', 'blog', true) on 
 drop policy if exists "staff carica immagini blog" on storage.objects;
 create policy "staff carica immagini blog" on storage.objects for insert to authenticated
   with check (bucket_id = 'blog' and public.mio_ruolo() is not null);
+
+-- 18/11/2026: telefono anche per chi scarica il libro
+alter table public.richieste_libro add column if not exists telefono text;
