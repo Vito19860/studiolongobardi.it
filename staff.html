@@ -375,7 +375,7 @@ function mostra(){
       aperta.querySelector('[data-salva]').onclick=function(){
         var m=aperta.querySelector('[data-m]');m.textContent='Salvataggio…';
         api('richieste?id=eq.'+x.id,{method:'PATCH',body:{stato:aperta.querySelector('[data-stato]').value,nota:aperta.querySelector('[data-nota]').value||null},prefer:'return=representation'})
-        .then(function(r){if(r&&r[0]){RD=RD.map(function(o){return o.id===x.id?r[0]:o});mostra();contaNuove()}}).catch(function(e){m.textContent=e.message});
+        .then(function(r){if(r&&r[0]){RD=RD.map(function(o){return o.id===x.id?r[0]:o});mostra();contaNuove()}else{m.textContent='Non salvato: il database non ha dato il permesso (codice R0).'}}).catch(function(e){m.textContent='Non salvato: '+e.message});
       };
       var el=aperta.querySelector('[data-elimina]');if(el)el.onclick=function(){elimina('richieste',x.id)};
     }
@@ -390,7 +390,7 @@ function mostra(){
 }
 function elimina(tab,id){
   if(!confirm('Eliminare definitivamente questi dati? (es. su richiesta della persona)'))return;
-  api(tab+'?id=eq.'+id,{method:'DELETE'}).then(function(){APERTA=null;carica()}).catch(function(e){alert(e.message)});
+  api(tab+'?id=eq.'+id,{method:'DELETE',prefer:'return=representation'}).then(function(r){if(!r||!r.length){alert('Non eliminato: il database non ha dato il permesso (codice R0).');return}APERTA=null;carica()}).catch(function(e){alert('Non eliminato: '+e.message)});
 }
 $('#esporta').onclick=function(){
   var L=filtrati(),C;
