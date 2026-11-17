@@ -69,7 +69,7 @@ Il beneficio decade: l''aliquota torna al 24% e l''impresa deve restituire il ri
 ('holding', 'La holding: non un costo, ma una leva strategica', 'Holding', 'Non è per tutti. Ma per chi ha utili, crescita e visione è spesso la scelta giusta.', 'Negli ultimi anni la **holding** è diventata uno degli strumenti più potenti, e allo stesso tempo più fraintesi, della pianificazione fiscale e patrimoniale.
 Una cosa va chiarita subito: la holding **non è per tutti**. Ma per chi ha utili, crescita e visione, è spesso la scelta giusta.
 ## Perché sempre più imprenditori la scelgono
-- gli utili trasferiti dalla società operativa sono **tassati solo sul 5%** del loro importo;
+- i dividendi che arrivano dalla società operativa sono **esclusi da tassazione per il 95%**: l''IRES si paga solo sul restante 5%, con un prelievo effettivo intorno all''1,2%;
 - si **accumula liquidità** in modo efficiente;
 - si **investe** in immobili, partecipazioni e strumenti finanziari senza prelievi personali;
 - si **protegge il patrimonio** dai rischi operativi;
