@@ -36,7 +36,7 @@ supabase/articoli-iniziali.sql  i 7 articoli dal giornale dello studio
 6. **Project Settings → API Keys**: copia il Project URL, la chiave **publishable** (o *anon*) e la chiave **secret** (o *service_role*).
 
 ### 2. Vercel
-1. **Add New → Project** → importa `studiolongobardi-it`. Framework **Other**, nessun comando di build.
+1. **Add New → Project** → importa `studiolongobardi.it`. Framework **Other**, nessun comando di build.
 2. **Environment Variables**:
 
 | Nome | Valore |
