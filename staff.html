@@ -356,12 +356,13 @@ function mostra(){
     $('#r-lista').innerHTML=L.map(function(x){
       var d=x.dati||{},ap=APERTA===x.id;
       return '<div class="card" data-id="'+x.id+'"><div class="riga" data-apri="'+x.id+'"><span class="stato s-'+esc(x.stato)+'">'+(SN[x.stato]||x.stato)+'</span>'
-       +'<span style="flex:1 1 300px;display:flex;flex-direction:column;gap:3px"><b>'+esc(x.nome)+(x.azienda?' · '+esc(x.azienda):'')+'</b><span class="ok">'+(x.tipo==='test'?'Test d\'impresa · '+(d.punteggio!=null?d.punteggio+'/12':''):esc(x.area))+' · '+dt(x.creata_il)+'</span></span>'
+       +'<span style="flex:1 1 300px;display:flex;flex-direction:column;gap:3px"><b>'+esc(x.nome)+(x.azienda?' · '+esc(x.azienda):'')+'</b><span class="ok">'+(x.tipo==='test'?'Test d\'impresa · '+(d.punteggio!=null?d.punteggio+'/12':''):esc(x.area))+(d.fatturato?' · '+esc(d.fatturato):'')+(d.urgenza==='Entro un mese'?' · <strong style="color:#A33A35">urgente</strong>':'')+' · '+dt(x.creata_il)+'</span></span>'
        +'<span class="ok">'+[x.email,x.telefono].filter(Boolean).map(esc).join(' · ')+'</span></div>'
        +(ap?'<div class="r-det">'
          +(x.messaggio?'<div style="grid-column:1/-1"><b>Messaggio</b>'+esc(x.messaggio).replace(/\n/g,'<br>')+'</div>':'')
          +(x.tipo==='test'&&d.pilastri?'<div style="grid-column:1/-1"><b>Test</b>'+Object.keys(d.pilastri).map(function(k){return esc(k)+' '+d.pilastri[k]+'/2'}).join(' · ')+(d.pilastro_debole?' — da rafforzare: <strong>'+esc(d.pilastro_debole)+'</strong>':'')+'</div>':'')
          +'<div><b>Contatti</b>'+(x.email?'<a href="mailto:'+esc(x.email)+'">'+esc(x.email)+'</a><br>':'')+(x.telefono?'<a href="tel:'+esc(tel(x.telefono))+'">'+esc(x.telefono)+'</a> · <a href="https://wa.me/'+esc(tel(x.telefono).replace(/^\+/,'').replace(/^(?!39)(3\d{8,9})$/,'39$1'))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+'</div>'
+         +((d.forma||d.fatturato||d.dipendenti||d.urgenza)?'<div><b>Impresa</b>'+[d.forma,d.fatturato?'fatturato '+d.fatturato:'',d.dipendenti?'dipendenti: '+d.dipendenti:''].filter(Boolean).map(esc).join(' · ')+(d.urgenza?'<br>Quando: '+esc(d.urgenza):'')+'</div>':'')
          +'<div><b>Consensi</b>Privacy sì · Aggiornamenti '+(x.consenso_marketing?'sì':'no')+'</div>'
          +(x.gestita_da?'<div><b>Ultima modifica</b>'+esc(x.gestita_da)+' · '+dt(x.aggiornata_il)+'</div>':'')
          +'<label style="grid-column:1/-1">Stato<select data-stato style="max-width:260px"><option value="nuova">Nuova</option><option value="in_lavorazione">In lavorazione</option><option value="chiusa">Chiusa</option></select></label>'
@@ -393,7 +394,7 @@ function elimina(tab,id){
 }
 $('#esporta').onclick=function(){
   var L=filtrati(),C;
-  if(RT==='richieste')C=[['Data','Tipo','Stato','Nome','Azienda','Email','Telefono','Area','Messaggio','Punteggio test','Pilastro debole','Consenso aggiornamenti','Nota interna','Gestita da'],L.map(function(x){var d=x.dati||{};return[dt(x.creata_il),x.tipo,SN[x.stato]||x.stato,x.nome,x.azienda,x.email,x.telefono,x.area,x.messaggio,d.punteggio,d.pilastro_debole,x.consenso_marketing?'sì':'no',x.nota,x.gestita_da]})];
+  if(RT==='richieste')C=[['Data','Tipo','Stato','Nome','Azienda','Email','Telefono','Area','Forma','Fatturato','Dipendenti','Urgenza','Messaggio','Punteggio test','Pilastro debole','Consenso aggiornamenti','Nota interna','Gestita da'],L.map(function(x){var d=x.dati||{};return[dt(x.creata_il),x.tipo,SN[x.stato]||x.stato,x.nome,x.azienda,x.email,x.telefono,x.area,d.forma,d.fatturato,d.dipendenti,d.urgenza,x.messaggio,d.punteggio,d.pilastro_debole,x.consenso_marketing?'sì':'no',x.nota,x.gestita_da]})];
   else if(RT==='libro')C=[['Data','Nome','Email'],L.map(function(x){return[dt(x.creata_il),x.nome,x.email]})];
   else C=[['Data','Email','Lista'],L.map(function(x){return[dt(x.creato_il),x.email,x.lista]})];
   var cell=function(v){v=v==null?'':String(v);if(/^[=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};

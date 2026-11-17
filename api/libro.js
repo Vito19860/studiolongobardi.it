@@ -11,7 +11,7 @@ const LINK_ORE = 24;
 export default async function handler(req, res) {
   if (soloPost(req, res)) return;
   const b = body(req);
-  if (b.sito) return res.status(200).json({ ok: true, url: null });
+  if (b.sito) return res.status(200).json({ ok: true, url: "/download/intelligenza-fiscale.pdf" }); // il libro è gratuito: anche nel dubbio lo diamo
 
   const nome = clip(b.nome, 120);
   const email = clip(b.email, 160).toLowerCase();

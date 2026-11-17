@@ -4,7 +4,16 @@
 import { notifica } from "./_notifica.js";
 import { body, clip, config, db, emailOk, soloPost } from "./_lib.js";
 
-const AREE = ["Fiscale e contabilità", "Check-up fiscale", "Lavoro e paghe", "Controllo di gestione", "Consulenza holding", "Formazione", "Elevate", "Lavora con noi", "Altro"];
+const AREE = ["Pianificazione fiscale avanzata SRL", "Fiscale e contabilità", "Check-up fiscale", "Lavoro e paghe", "Controllo di gestione", "Consulenza holding", "Formazione", "Elevate", "Lavora con noi", "Altro"];
+
+const SCELTE = {"forma": ["Ditta individuale", "Libero professionista", "Società di persone (snc, sas)", "SRL", "SpA o altra società", "Non ho ancora un'attività"], "fatturato": ["Fino a 250.000 €", "250.000 – 1 milione €", "1 – 5 milioni €", "Oltre 5 milioni €", "Preferisco non dirlo"], "dipendenti": ["Nessuno", "1 – 9", "10 – 49", "50 o più"], "urgenza": ["Entro un mese", "Entro 3 mesi", "Sto solo valutando"]};
+
+function qualifica(q) {
+  if (!q || typeof q !== "object") return null;
+  const out = {};
+  for (const k of Object.keys(SCELTE)) if (SCELTE[k].includes(q[k])) out[k] = q[k];
+  return Object.keys(out).length ? out : null;
+}
 
 export default async function handler(req, res) {
   if (soloPost(req, res)) return;
@@ -35,6 +44,9 @@ export default async function handler(req, res) {
     };
   }
 
+  const qual = qualifica(b.qualifica);
+  if (qual) dati = { ...(dati || {}), ...qual };
+
   const row = {
     tipo,
     nome,
@@ -62,7 +74,8 @@ export default async function handler(req, res) {
   await notifica(titolo, {
     Nome: nome, Email: row.email, Telefono: row.telefono, Azienda: row.azienda, Area: row.area,
     Messaggio: row.messaggio,
-    Test: dati ? Object.entries(dati.pilastri).map(([k, v]) => `${k} ${v}/2`).join(" · ") : null,
+    Forma: dati && dati.forma, Fatturato: dati && dati.fatturato, Dipendenti: dati && dati.dipendenti, Urgenza: dati && dati.urgenza,
+    Test: dati && dati.pilastri ? Object.entries(dati.pilastri).map(([k, v]) => `${k} ${v}/2`).join(" · ") : null,
     "Consenso aggiornamenti": row.consenso_marketing ? "sì" : null,
   }, row.email);
   return res.status(200).json({ ok: true });
