@@ -370,7 +370,7 @@ function mostra(){
          +'<div class="azioni" style="grid-column:1/-1"><button class="btn blue" data-salva>Salva</button>'+(dir?'<button class="btn red" data-elimina>Elimina</button>':'')+'<span class="msg" data-m></span></div>'
          +'</div>':'')+'</div>';
     }).join('');
-    var aperta=document.querySelector('.card[data-id="'+APERTA+'"]');
+    var aperta=document.querySelector('#r-lista .card[data-id="'+APERTA+'"]');
     if(aperta){var x=RD.filter(function(r){return r.id===APERTA})[0];aperta.querySelector('[data-stato]').value=x.stato;
       aperta.querySelector('[data-salva]').onclick=function(){
         var m=aperta.querySelector('[data-m]');m.textContent='Salvataggio…';
