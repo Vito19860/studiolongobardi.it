@@ -23,6 +23,8 @@ api/config.js               dati pubblici per l'area staff
 api/stato.js                diagnostica: www.studiolongobardi.it/diagnostica
 supabase/schema.sql         database (tabelle, regole di sicurezza, doppia approvazione)
 supabase/articoli-iniziali.sql  i 7 articoli dal giornale dello studio
+supabase/staff.sql          chi entra nell'area staff (direzione, marketing)
+supabase/richieste-staff.sql  archivio richieste dentro /staff (ruoli direzione, marketing, segreteria)
 ```
 
 ## Messa online (una volta sola)
@@ -68,4 +70,4 @@ I post si aggiornano da soli (ogni 30 minuti al massimo, e ogni mattina alle 7).
 Vercel → **Settings → Domains**: `studiolongobardi.it` e `www.studiolongobardi.it`. Poi su Aruba i record DNS indicati da Vercel.
 
 ## Dove leggere i dati
-Supabase → **Table Editor**: `richieste` (contatti e test, colonna `stato`), `richieste_libro`, `iscritti`, `articoli`, `post_social`.
+Area staff → **Richieste** (stato, note, export Excel). In alternativa Supabase → **Table Editor**: `richieste` (contatti e test, colonna `stato`), `richieste_libro`, `iscritti`, `articoli`, `post_social`.

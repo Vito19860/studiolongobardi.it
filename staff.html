@@ -47,13 +47,24 @@ label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}
 .azioni{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .nota{background:#FBE7E6;color:#A33A35;padding:12px 14px;border-radius:2px;font-size:14px}
 .approva{border-top:3px solid #D4A24C;padding:20px 24px;display:flex;flex-direction:column;gap:12px}
+.nav{display:flex;gap:6px;margin-left:24px}
+.nav button{font:700 12px Montserrat,Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:#D3DDEE;border:0;border-bottom:3px solid transparent;padding:14px 10px;cursor:pointer;min-height:44px}
+.nav button.on{color:#fff;border-bottom-color:#D4A24C}
+.badge{display:inline-block;min-width:20px;padding:2px 6px;border-radius:999px;background:#D4A24C;color:#0A1F44;font-size:11px;margin-left:6px;text-align:center}
+.filtri{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.filtri select,.filtri input{width:auto;min-width:180px}
+.r-det{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 24px;padding:4px 18px 20px;font-size:15px;color:#3A4762}
+.r-det b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5E6B85;margin-bottom:2px}
+.s-nuova{background:#FBF1DF;color:#9A6F1E}.s-in_lavorazione{background:#E9EEF6;color:#0F2C5C}.s-chiusa{background:#E3F3EA;color:#2E7D55}
+.tab-mini{font-size:11px;padding:8px 12px;min-height:36px}
 [hidden]{display:none!important}
 </style>
 </head>
 <body>
 <header><div class="wrap bar">
   <a href="/"><img src="img/logo-chiaro.png" alt="Studio Longobardi"></a>
-  <span class="mont up" style="font-size:13px;font-weight:800;color:#E9BE6E">Area staff · Blog</span>
+  <span class="mont up" style="font-size:13px;font-weight:800;color:#E9BE6E">Area staff</span>
+  <nav class="nav" id="nav" hidden><button type="button" data-v="articoli" class="on">Articoli</button><button type="button" data-v="richieste">Richieste<span class="badge" id="nuove" hidden></span></button></nav>
   <span id="chi" style="margin-left:auto;font-size:14px;color:#D3DDEE"></span>
   <button id="esci" class="btn ghost" hidden>Esci</button>
 </div></header>
@@ -90,6 +101,19 @@ label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}
   <p style="color:#5E6B85;max-width:760px;margin:12px 0 0">Ogni articolo va online solo quando lo approvano <b>sia la direzione sia il marketing</b>. Se modifichi un articolo già approvato, le approvazioni ripartono.</p>
   <div class="tabs" id="tabs"></div>
   <div class="lista" id="lista"></div>
+</main>
+
+<!-- RICHIESTE -->
+<main id="v-richieste" class="wrap" hidden>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-top:34px">
+    <div><span class="mont up" style="font-size:12px;font-weight:800;color:#9A6F1E">Dal sito</span><h1 class="mont" style="margin:6px 0 0;font-size:34px;font-weight:800">Richieste</h1></div>
+    <button class="btn line" id="esporta">Scarica Excel</button>
+  </div>
+  <p style="color:#5E6B85;max-width:760px;margin:12px 0 0">Dati personali dei clienti: visibili solo a direzione, marketing e segreteria. Puoi cambiare lo stato e aggiungere una nota interna; i dati lasciati dal cliente non si modificano.</p>
+  <div class="tabs" id="r-tabs"><button class="tab on" data-r="richieste">Contatti e check-up</button><button class="tab" data-r="libro">Libro scaricato</button><button class="tab" data-r="iscritti">Iscritti</button></div>
+  <div class="filtri"><select id="f-stato"><option value="">Tutti gli stati</option><option value="nuova">Nuove</option><option value="in_lavorazione">In lavorazione</option><option value="chiusa">Chiuse</option></select><input id="f-cerca" type="search" placeholder="Cerca nome, email, azienda…"><span id="r-conta" class="ok"></span></div>
+  <div class="lista" id="r-lista"></div>
+  <p style="height:60px"></p>
 </main>
 
 <!-- EDITOR -->
@@ -135,7 +159,7 @@ var CFG=null,S=null,ME=null,ART=[],CUR=null,TAB='tutti';
 var IMG=[['img/colonnato.jpg','Colonnato'],['img/palco.jpg','Palco di Elevate'],['img/elevate-sala.jpg','Sala di Elevate'],['img/squadra.jpg','La squadra'],['img/accoglienza.jpg','Accoglienza'],['img/vito-palco.jpg','Vito sul palco']];
 var $=function(s){return document.querySelector(s)};
 function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-function vista(id){['v-login','v-password','v-elenco','v-editor'].forEach(function(v){$('#'+v).hidden=v!==id});window.scrollTo(0,0)}
+function vista(id){['v-login','v-password','v-elenco','v-editor','v-richieste'].forEach(function(v){$('#'+v).hidden=v!==id});window.scrollTo(0,0)}
 function msg(el,t){(typeof el==='string'?$(el):el).textContent=t||''}
 
 /* --- sessione (resta solo in questa scheda del browser) --- */
@@ -191,8 +215,9 @@ function entra(){
   token().then(function(t){return auth('user',null,t)}).then(function(u){S.uid=u.id;return api('staff?user_id=eq.'+u.id+'&select=*')})
   .then(function(r){
     if(!r||!r.length||!r[0].attivo){vista('v-login');msg('#f-login .msg','Il tuo account non è ancora abilitato: chiedi a Vito di aggiungerti allo staff.');return}
-    ME=r[0];$('#chi').textContent=ME.nome+' · '+({autore:'Autore',direzione:'Direzione',marketing:'Marketing'})[ME.ruolo];$('#esci').hidden=false;
-    elenco();
+    ME=r[0];$('#chi').textContent=ME.nome+' · '+({autore:'Autore',direzione:'Direzione',marketing:'Marketing',segreteria:'Segreteria'})[ME.ruolo];$('#esci').hidden=false;
+    if(vedeR()){$('#nav').hidden=false;contaNuove();}
+    if(ME.ruolo==='segreteria')apriRichieste();else elenco();
   }).catch(function(){S=null;try{sessionStorage.removeItem('sl_staff')}catch(e){}vista('v-login')});
 }
 
@@ -201,7 +226,7 @@ var NOMI={bozza:'Bozza',in_revisione:'In approvazione',pubblicato:'Online',respi
 function approvatore(){return ME.ruolo==='direzione'||ME.ruolo==='marketing'}
 function daMe(a){return a.stato==='in_revisione'&&((ME.ruolo==='direzione'&&!a.ok_direzione)||(ME.ruolo==='marketing'&&!a.ok_marketing))}
 function elenco(){
-  vista('v-elenco');
+  vista('v-elenco');navOn('articoli');
   api('articoli?select=*&order=aggiornato_il.desc').then(function(r){ART=r||[];disegna()}).catch(function(e){$('#lista').textContent=e.message});
 }
 function disegna(){
@@ -210,7 +235,7 @@ function disegna(){
   T.push(['in_revisione','In approvazione'],['pubblicato','Online']);
   if(approvatore()&&TAB==='tutti'&&ART.filter(daMe).length&&!disegna.fatto){TAB='approvare';disegna.fatto=1}
   $('#tabs').innerHTML=T.map(function(t){return '<button class="tab'+(t[0]===TAB?' on':'')+'" data-t="'+t[0]+'">'+t[1]+'</button>'}).join('');
-  [].forEach.call(document.querySelectorAll('.tab'),function(b){b.onclick=function(){TAB=b.dataset.t;disegna()}});
+  [].forEach.call(document.querySelectorAll('#tabs .tab'),function(b){b.onclick=function(){TAB=b.dataset.t;disegna()}});
   var L=ART.filter(function(a){return TAB==='tutti'||(TAB==='miei'&&a.autore_id===S.uid)||(TAB==='approvare'&&daMe(a))||a.stato===TAB});
   $('#lista').innerHTML=L.length?L.map(function(a){
     return '<div class="card riga" data-id="'+a.id+'"><span class="stato s-'+a.stato+'">'+NOMI[a.stato]+'</span><span style="flex:1 1 300px;display:flex;flex-direction:column;gap:3px"><b>'+esc(a.titolo)+'</b><span class="ok">'+esc(a.categoria)+' · '+esc(a.autore_nome)+' · modificato il '+new Date(a.aggiornato_il).toLocaleDateString('it-IT')+'</span></span>'
@@ -295,6 +320,87 @@ $('#file-img').addEventListener('change',function(e){
   .then(function(r){if(!r.ok)throw new Error('Caricamento non riuscito');var u=CFG.url+'/storage/v1/object/public/blog/'+nome;opzioniImg(u);anteprima();msg('#e-msg','Foto caricata: ricordati di salvare.')})
   .catch(function(e){msg('#e-msg',e.message)});
 });
+
+/* --- richieste dal sito --- */
+function vedeR(){return ME&&['direzione','marketing','segreteria'].indexOf(ME.ruolo)>=0}
+function navOn(v){[].forEach.call(document.querySelectorAll('#nav button'),function(b){b.classList.toggle('on',b.dataset.v===v)})}
+[].forEach.call(document.querySelectorAll('#nav button'),function(b){b.onclick=function(){b.dataset.v==='richieste'?apriRichieste():elenco()}});
+var RT='richieste',RD=[],APERTA=null;
+var SN={nuova:'Nuova',in_lavorazione:'In lavorazione',chiusa:'Chiusa'};
+function contaNuove(){
+  token().then(function(t){return fetch(CFG.url+'/rest/v1/richieste?select=id&stato=eq.nuova',{headers:{apikey:CFG.anon,Authorization:'Bearer '+t,Prefer:'count=exact',Range:'0-0'}})})
+  .then(function(r){var n=+((r.headers.get('content-range')||'').split('/')[1]||0);$('#nuove').textContent=n;$('#nuove').hidden=!n}).catch(function(){});
+}
+function apriRichieste(){vista('v-richieste');navOn('richieste');carica()}
+[].forEach.call(document.querySelectorAll('#r-tabs .tab'),function(b){b.onclick=function(){RT=b.dataset.r;[].forEach.call(document.querySelectorAll('#r-tabs .tab'),function(x){x.classList.toggle('on',x===b)});$('#f-stato').hidden=RT!=='richieste';APERTA=null;carica()}});
+$('#f-stato').onchange=mostra;$('#f-cerca').oninput=mostra;
+function carica(){
+  $('#r-lista').innerHTML='<p class="ok">Caricamento…</p>';
+  api(({richieste:'richieste',libro:'richieste_libro',iscritti:'iscritti'})[RT]+'?select=*&order='+(RT==='iscritti'?'creato_il':'creata_il')+'.desc&limit=1000').then(function(r){RD=r||[];mostra();contaNuove()}).catch(function(e){$('#r-lista').textContent=e.message});
+}
+function dt(d){var t=new Date(d);return isNaN(t)?'':t.toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+t.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})}
+function filtrati(){
+  var st=$('#f-stato').value,q=$('#f-cerca').value.trim().toLowerCase();
+  return RD.filter(function(x){
+    if(RT==='richieste'&&st&&x.stato!==st)return false;
+    if(!q)return true;
+    return [x.nome,x.email,x.telefono,x.azienda,x.messaggio,x.lista].join(' ').toLowerCase().indexOf(q)>=0;
+  });
+}
+function tel(n){return String(n||'').replace(/[^\d+]/g,'')}
+function mostra(){
+  var L=filtrati();$('#r-conta').textContent=L.length+(L.length===1?' risultato':' risultati');
+  if(!L.length){$('#r-lista').innerHTML='<p style="color:#5E6B85">Nessuna richiesta qui.</p>';return}
+  var dir=ME.ruolo==='direzione';
+  if(RT==='richieste'){
+    $('#r-lista').innerHTML=L.map(function(x){
+      var d=x.dati||{},ap=APERTA===x.id;
+      return '<div class="card" data-id="'+x.id+'"><div class="riga" data-apri="'+x.id+'"><span class="stato s-'+esc(x.stato)+'">'+(SN[x.stato]||x.stato)+'</span>'
+       +'<span style="flex:1 1 300px;display:flex;flex-direction:column;gap:3px"><b>'+esc(x.nome)+(x.azienda?' · '+esc(x.azienda):'')+'</b><span class="ok">'+(x.tipo==='test'?'Test d\'impresa · '+(d.punteggio!=null?d.punteggio+'/12':''):esc(x.area))+' · '+dt(x.creata_il)+'</span></span>'
+       +'<span class="ok">'+[x.email,x.telefono].filter(Boolean).map(esc).join(' · ')+'</span></div>'
+       +(ap?'<div class="r-det">'
+         +(x.messaggio?'<div style="grid-column:1/-1"><b>Messaggio</b>'+esc(x.messaggio).replace(/\n/g,'<br>')+'</div>':'')
+         +(x.tipo==='test'&&d.pilastri?'<div style="grid-column:1/-1"><b>Test</b>'+Object.keys(d.pilastri).map(function(k){return esc(k)+' '+d.pilastri[k]+'/2'}).join(' · ')+(d.pilastro_debole?' — da rafforzare: <strong>'+esc(d.pilastro_debole)+'</strong>':'')+'</div>':'')
+         +'<div><b>Contatti</b>'+(x.email?'<a href="mailto:'+esc(x.email)+'">'+esc(x.email)+'</a><br>':'')+(x.telefono?'<a href="tel:'+esc(tel(x.telefono))+'">'+esc(x.telefono)+'</a> · <a href="https://wa.me/'+esc(tel(x.telefono).replace(/^\+/,'').replace(/^(?!39)(3\d{8,9})$/,'39$1'))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+'</div>'
+         +'<div><b>Consensi</b>Privacy sì · Aggiornamenti '+(x.consenso_marketing?'sì':'no')+'</div>'
+         +(x.gestita_da?'<div><b>Ultima modifica</b>'+esc(x.gestita_da)+' · '+dt(x.aggiornata_il)+'</div>':'')
+         +'<label style="grid-column:1/-1">Stato<select data-stato style="max-width:260px"><option value="nuova">Nuova</option><option value="in_lavorazione">In lavorazione</option><option value="chiusa">Chiusa</option></select></label>'
+         +'<label style="grid-column:1/-1">Nota interna<textarea data-nota style="min-height:80px">'+esc(x.nota||'')+'</textarea></label>'
+         +'<div class="azioni" style="grid-column:1/-1"><button class="btn blue" data-salva>Salva</button>'+(dir?'<button class="btn red" data-elimina>Elimina</button>':'')+'<span class="msg" data-m></span></div>'
+         +'</div>':'')+'</div>';
+    }).join('');
+    var aperta=document.querySelector('.card[data-id="'+APERTA+'"]');
+    if(aperta){var x=RD.filter(function(r){return r.id===APERTA})[0];aperta.querySelector('[data-stato]').value=x.stato;
+      aperta.querySelector('[data-salva]').onclick=function(){
+        var m=aperta.querySelector('[data-m]');m.textContent='Salvataggio…';
+        api('richieste?id=eq.'+x.id,{method:'PATCH',body:{stato:aperta.querySelector('[data-stato]').value,nota:aperta.querySelector('[data-nota]').value||null},prefer:'return=representation'})
+        .then(function(r){if(r&&r[0]){RD=RD.map(function(o){return o.id===x.id?r[0]:o});mostra();contaNuove()}}).catch(function(e){m.textContent=e.message});
+      };
+      var el=aperta.querySelector('[data-elimina]');if(el)el.onclick=function(){elimina('richieste',x.id)};
+    }
+    [].forEach.call(document.querySelectorAll('[data-apri]'),function(d){d.onclick=function(){var id=+d.dataset.apri;APERTA=APERTA===id?null:id;mostra()}});
+  }else{
+    $('#r-lista').innerHTML=L.map(function(x){
+      return '<div class="card riga" style="cursor:default"><span style="flex:1 1 300px;display:flex;flex-direction:column;gap:3px"><b>'+esc(RT==='libro'?x.nome:x.email)+'</b><span class="ok">'+(RT==='libro'?esc(x.email)+' · Intelligenza Fiscale':(x.lista==='elevate'?'Avvisami Elevate 2027':'Aggiornamenti del blog'))+' · '+dt(x.creata_il||x.creato_il)+'</span></span>'
+       +(dir?'<button class="btn red tab-mini" data-del="'+x.id+'">Elimina</button>':'')+'</div>';
+    }).join('');
+    [].forEach.call(document.querySelectorAll('[data-del]'),function(b){b.onclick=function(){elimina(RT==='libro'?'richieste_libro':'iscritti',+b.dataset.del)}});
+  }
+}
+function elimina(tab,id){
+  if(!confirm('Eliminare definitivamente questi dati? (es. su richiesta della persona)'))return;
+  api(tab+'?id=eq.'+id,{method:'DELETE'}).then(function(){APERTA=null;carica()}).catch(function(e){alert(e.message)});
+}
+$('#esporta').onclick=function(){
+  var L=filtrati(),C;
+  if(RT==='richieste')C=[['Data','Tipo','Stato','Nome','Azienda','Email','Telefono','Area','Messaggio','Punteggio test','Pilastro debole','Consenso aggiornamenti','Nota interna','Gestita da'],L.map(function(x){var d=x.dati||{};return[dt(x.creata_il),x.tipo,SN[x.stato]||x.stato,x.nome,x.azienda,x.email,x.telefono,x.area,x.messaggio,d.punteggio,d.pilastro_debole,x.consenso_marketing?'sì':'no',x.nota,x.gestita_da]})];
+  else if(RT==='libro')C=[['Data','Nome','Email'],L.map(function(x){return[dt(x.creata_il),x.nome,x.email]})];
+  else C=[['Data','Email','Lista'],L.map(function(x){return[dt(x.creato_il),x.email,x.lista]})];
+  var cell=function(v){v=v==null?'':String(v);if(/^[=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
+  var csv='﻿'+[C[0]].concat(C[1]).map(function(r){return r.map(cell).join(';')}).join('\r\n');
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='studiolongobardi-'+RT+'-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();
+};
 })();
 </script>
 </body>
