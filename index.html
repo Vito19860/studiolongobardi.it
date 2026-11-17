@@ -1554,12 +1554,19 @@ function postCard(p,k){
    +'<span style="margin-top: auto; font-size: 13px; font-weight: 600; color: #9A6F1E">Vedi su '+(ig?'Instagram':'Facebook')+' →</span></div></a>';
 }
 var grid=document.getElementById('social-grid');
+function senzaPost(){
+  grid.innerHTML='<div style="grid-column: 1 / -1; background: #F3F6FB; border: 1px solid #E2E8F1; padding: 40px; text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center"><span class="mont" style="font-size: 22px; font-weight: 800; color: #0F2C5C">Le ultime novità le trovi sui nostri social</span><span style="color: #5E6B85">Video da Elevate, scadenze, consigli pratici: seguici per non perderle.</span><span style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center"><a href="https://www.instagram.com/studiolongobardi/" target="_blank" rel="noopener" class="btn btn-blue">Instagram</a><a href="https://www.facebook.com/studiolongobardi1/" target="_blank" rel="noopener" class="btn btn-lineb">Facebook</a></span></div>';
+  var nota=document.getElementById('social-nota');if(nota)nota.textContent='';
+  [].slice.call(document.querySelectorAll('[data-sfilter]')).forEach(function(b){b.style.display='none'});
+}
+if(grid){grid.style.opacity='0';grid.style.transition='opacity .4s';}
 if(grid)fetch('/api/social').then(function(r){return r.json()}).then(function(j){
-  if(!j||!j.post||!j.post.length)return;
+  grid.style.opacity='1';
+  if(!j||!j.post||!j.post.length){senzaPost();return;}
   grid.innerHTML=j.post.map(postCard).join('');
   var nota=document.getElementById('social-nota');if(nota)nota.textContent='Gli ultimi post, aggiornati in automatico';
   var on=document.querySelector('[data-sfilter].on');if(on)on.click();
-}).catch(function(){});
+}).catch(function(){grid.style.opacity='1';senzaPost();});
 
 /* --- articoli del blog approvati --- */
 function inl(x){return esc(x).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
