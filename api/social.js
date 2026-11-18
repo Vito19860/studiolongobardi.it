@@ -27,8 +27,10 @@ export default async function handler(req, res) {
 
   let esito = null;
   if (meta) {
-    const ultima = await db("impostazioni?chiave=eq.social_sync&select=valore").catch(() => null);
-    const quando = ultima && ultima.ok && ultima.data && ultima.data[0] ? Date.parse(ultima.data[0].valore) : 0;
+    const imp = await db("impostazioni?chiave=in.(social_sync,social_esito)&select=chiave,valore").catch(() => null);
+    const val = (k) => { const r = imp && imp.ok && Array.isArray(imp.data) ? imp.data.find((x) => x.chiave === k) : null; return r ? r.valore : ""; };
+    // se l'ultimo tentativo era fallito, riproviamo subito
+    const quando = /errore/.test(val("social_esito")) ? 0 : Date.parse(val("social_sync")) || 0;
     if (forza || !quando || Date.now() - quando > OGNI_MIN * 60000) {
       esito = await sincronizza().catch((e) => ({ errore: String(e.message || e).slice(0, 300) }));
       // se il collegamento con Meta non riesce, riproviamo alla visita successiva invece di aspettare 30 minuti
