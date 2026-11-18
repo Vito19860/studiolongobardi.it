@@ -27,8 +27,10 @@ export default async function handler(req, res) {
   const salva = (riga) => db("richieste_libro?on_conflict=email", {
     method: "POST", body: riga, prefer: "resolution=ignore-duplicates,return=representation",
   }).catch((e) => ({ ok: false, text: String(e) }));
-  let r = await salva({ nome, email, telefono, consenso_privacy: true });
+  const marketing = b.marketing === true;
+  let r = await salva({ nome, email, telefono, consenso_privacy: true, consenso_marketing: marketing });
   // se la colonna "telefono" non è ancora stata creata nel database, salva comunque nome ed email
+  if (!r.ok && /consenso_marketing/.test(r.text || "")) r = await salva({ nome, email, telefono, consenso_privacy: true });
   if (!r.ok && /telefono/.test(r.text || "")) r = await salva({ nome, email, consenso_privacy: true });
   if (!r.ok) {
     console.error("Supabase", r.status, r.text);
@@ -36,9 +38,9 @@ export default async function handler(req, res) {
   }
   const nuovo = Array.isArray(r.data) && r.data.length > 0;
   // chi riscarica con la stessa email: aggiorniamo il telefono se prima mancava o è cambiato
-  if (!nuovo) await db(`richieste_libro?email=eq.${encodeURIComponent(email)}`, { method: "PATCH", body: { telefono }, prefer: "return=minimal" }).catch(() => {});
+  if (!nuovo) await db(`richieste_libro?email=eq.${encodeURIComponent(email)}`, { method: "PATCH", body: marketing ? { telefono, consenso_marketing: true } : { telefono }, prefer: "return=minimal" }).catch(() => {});
   if (nuovo) {
-    await notifica(`Libro scaricato: ${nome}`, { Nome: nome, Email: email, Telefono: telefono, Libro: "Intelligenza Fiscale" }, email);
+    await notifica(`Libro scaricato: ${nome}`, { Nome: nome, Email: email, Telefono: telefono, Libro: "Intelligenza Fiscale", "Consenso comunicazioni": marketing ? "sì" : "no" }, email);
   }
 
   let link = null;

@@ -186,3 +186,4 @@ create policy "staff carica immagini blog" on storage.objects for insert to auth
 
 -- 18/11/2026: telefono anche per chi scarica il libro
 alter table public.richieste_libro add column if not exists telefono text;
+alter table public.richieste_libro add column if not exists consenso_marketing boolean not null default false;
