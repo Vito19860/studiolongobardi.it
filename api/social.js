@@ -31,9 +31,11 @@ export default async function handler(req, res) {
     const quando = ultima && ultima.ok && ultima.data && ultima.data[0] ? Date.parse(ultima.data[0].valore) : 0;
     if (forza || !quando || Date.now() - quando > OGNI_MIN * 60000) {
       esito = await sincronizza().catch((e) => ({ errore: String(e.message || e).slice(0, 300) }));
+      // se il collegamento con Meta non riesce, riproviamo alla visita successiva invece di aspettare 30 minuti
+      const riuscito = esito && !esito.errore;
       await db("impostazioni?on_conflict=chiave", {
         method: "POST", prefer: "resolution=merge-duplicates,return=minimal",
-        body: [{ chiave: "social_sync", valore: new Date().toISOString() }, { chiave: "social_esito", valore: JSON.stringify(esito).slice(0, 1000) }],
+        body: [...(riuscito ? [{ chiave: "social_sync", valore: new Date().toISOString() }] : []), { chiave: "social_esito", valore: JSON.stringify({ ...esito, quando: new Date().toISOString() }).slice(0, 1000) }],
       }).catch(() => {});
     }
   }
