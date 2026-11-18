@@ -74,6 +74,67 @@ form .check input{width:18px;height:18px;margin-top:3px;flex:none}
 footer{background:#0A1F44;color:#A9B8D2;font-size:14px;padding:34px 0}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a{color:#E9BE6E}
+
+.sim{background:#F3F6FB}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;margin-top:30px;align-items:start}
+@media(max-width:900px){.sim-grid{grid-template-columns:minmax(0,1fr)}}
+.scard{background:#fff;border:1px solid #E2E8F1;padding:22px 24px;margin-bottom:16px}
+.scard h3{margin:0 0 4px;font:800 17px Montserrat,Inter,sans-serif;color:#0F2C5C;text-transform:uppercase;letter-spacing:.04em}
+.scard .hint{margin:0 0 10px;font-size:14px;color:#5E6B85}
+.sf{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:12px;align-items:center;padding:9px 0;border-top:1px solid #EDF1F7}
+.sf:first-of-type{border-top:0}
+.sf label{font-size:15px;color:#0F2C5C;font-weight:500}
+.sf small{display:block;font-size:12.5px;color:#5E6B85;font-weight:400}
+.sf input,.sf select{width:100%;font:inherit;font-size:15px;padding:10px 12px;border:1px solid #C9D3E3;border-radius:2px;background:#fff;color:#0F2C5C;text-align:right}
+.sf select{text-align:left}
+.sf input:focus,.sf select:focus{outline:none;border-color:#D4A24C}
+@media(max-width:420px){.sf{grid-template-columns:minmax(0,1fr) 118px}.lev-b{padding-left:0}}
+.lev{border-top:1px solid #EDF1F7;padding:11px 0}.lev:first-of-type{border-top:0}
+.lev-h{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;color:#0F2C5C;cursor:pointer}
+.lev-h input{width:20px;height:20px;accent-color:#D4A24C;flex:none}
+.lev-b{padding-left:30px}.lev-b .sf{grid-template-columns:minmax(0,1fr) 120px;border-top:0;padding:5px 0}
+.lev.off .lev-b{opacity:.35}
+.sim details{margin-top:6px;border-top:1px solid #EDF1F7;padding-top:6px}
+.sim summary{cursor:pointer;font:700 12px Montserrat,Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:8px 0;color:#9A6F1E}
+.sres{position:sticky;top:20px}
+@media(max-width:900px){.sres{position:static}}
+.big{background:#0F2C5C;color:#fff;padding:26px;margin-bottom:16px;border-top:4px solid #D4A24C}
+.big .lbl{margin:0;font:800 12px Montserrat,Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#E9BE6E}
+.big .num{margin:10px 0 6px;font:800 clamp(40px,6vw,60px)/1.05 Montserrat,Inter,sans-serif;color:#E9BE6E;font-variant-numeric:tabular-nums}
+.big .sub{margin:0;font-size:15px;color:#D3DDEE}
+.bar{display:grid;grid-template-columns:160px minmax(0,1fr);gap:10px;align-items:center;margin:9px 0;font-size:14px;color:#0F2C5C}
+@media(max-width:480px){.bar{grid-template-columns:118px 1fr;font-size:13px}}
+.bar .track{position:relative;height:26px}.bar .fill{display:block;height:100%;background:#C9D3E3}
+.bar .fill.best{background:linear-gradient(90deg,#D4A24C,#E9BE6E)}.bar .fill.base{background:#E8A49C}
+.bar .val{position:absolute;top:4px;font-size:13px;font-weight:700;white-space:nowrap}
+.bar .name.best{font-weight:800;color:#9A6F1E}
+.sim table{width:100%;border-collapse:collapse;font-size:14px}
+.sim th,.sim td{padding:9px 6px;border-bottom:1px solid #EDF1F7;text-align:right;white-space:nowrap}
+.sim th:first-child,.sim td:first-child{text-align:left;white-space:normal}
+.sim th{font:700 11px Montserrat,Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#5E6B85}
+.sim tr.best td{font-weight:800;background:#FBF1DF;color:#0F2C5C}
+.pos{color:#2E7D55}.neg{color:#A33A35}
+.twrap{overflow-x:auto}
+.snote{font-size:13px;color:#5E6B85;margin:8px 0}.swarn{font-size:13px;color:#9A6F1E;font-weight:700;margin:6px 0 0}
+.lock{position:relative}
+.lock.locked .lc{filter:blur(7px);opacity:.5;pointer-events:none;user-select:none}
+.gate{display:none}
+.lock.locked .gate{display:block;position:absolute;top:18px;left:50%;transform:translateX(-50%);width:min(440px,calc(100% - 24px));z-index:2;background:#fff;border:1px solid #E2E8F1;border-top:4px solid #D4A24C;padding:24px;box-shadow:0 24px 60px rgba(15,44,92,.25)}
+.gate h4{margin:4px 0 6px;font:800 20px/1.25 Montserrat,Inter,sans-serif;color:#0F2C5C}
+.gate p{margin:0 0 14px;color:#5E6B85;font-size:14.5px}
+.gate form{display:grid;gap:12px;padding:0;border:0;grid-template-columns:1fr}
+.gate label{display:grid;gap:6px;font-size:13px;font-weight:600;color:#0F2C5C}
+.gate input:not([type=checkbox]){font:inherit;font-size:16px;padding:12px;border:1px solid #C9D3E3;border-radius:2px;width:100%}
+.gate .chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:13.5px}
+.gate .chk input{width:18px;height:18px;margin-top:2px;flex:none}
+.gmsg{margin:0;font-size:14px;color:#A33A35;min-height:1em}
+.scta{background:#fff;border:1px solid #E2E8F1;border-left:4px solid #D4A24C;padding:22px;margin-bottom:16px}
+.scta h4{margin:0 0 6px;font:800 19px Montserrat,Inter,sans-serif;color:#0F2C5C}
+.scta p{margin:0 0 14px;font-size:15px;color:#5E6B85}
+.mbar{display:none}
+@media(max-width:900px){.mbar{position:fixed;z-index:25;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;background:#0F2C5C;color:#fff;text-decoration:none;font-size:14px;box-shadow:0 12px 30px rgba(10,31,68,.4);border-top:3px solid #D4A24C;transition:opacity .3s,transform .3s}
+.mbar b{color:#E9BE6E;font-size:16px;margin-left:4px}.mbar i{font-style:normal;font:700 11px Montserrat,Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#E9BE6E}
+.mbar.hide{opacity:0;transform:translateY(20px);pointer-events:none}}
 </style>
 </head>
 <body>
@@ -88,7 +149,7 @@ footer a{color:#E9BE6E}
     <span class="kicker">Pianificazione fiscale avanzata per SRL</span>
     <h1 class="up">La tua azienda produce utili importanti. La tua struttura fiscale è davvero efficiente?</h1>
     <p>Analizziamo bilancio, struttura societaria e opportunità previste dalla normativa, per costruire un piano fiscale su misura della tua impresa. Nel pieno rispetto delle regole.</p>
-    <div class="cta"><a class="btn btn-gold" href="#check-up">Richiedi il check-up</a><a class="btn btn-line" href="#leve">Le leve che usiamo</a></div>
+    <div class="cta"><a class="btn btn-gold" href="#check-up">Richiedi il check-up</a><a class="btn btn-line" href="#simulatore">Calcola il tuo risparmio</a></div>
   </div>
 </div>
 
@@ -110,6 +171,60 @@ footer a{color:#E9BE6E}
   <div class="leve"><a class="leva" href="/#articolo-compenso-amministratore"><b class="mont">Compenso amministratore e TFM</b><span>Lo stesso risultato economico per i soci, con un carico fiscale più basso e in parte rinviato.</span><em>Approfondisci →</em></a><div class="leva"><b class="mont">Auto aziendali e rimborsi chilometrici</b><span>Auto in uso, noleggio, fringe benefit e rimborsi per le trasferte: la formula giusta cambia quanto è deducibile e quanto resta tassato.</span></div><a class="leva" href="/#articolo-buoni-pasto"><b class="mont">Buoni pasto</b><span>Fino a 10 euro al giorno per i buoni digitali, esenti da tasse e contributi e deducibili per l'azienda.</span><em>Approfondisci →</em></a><div class="leva"><b class="mont">Welfare aziendale</b><span>Servizi e beni per i collaboratori che valgono di più del loro costo, con vantaggi fiscali e contributivi.</span></div><div class="leva"><b class="mont">Polizza Key Man</b><span>Protegge l'impresa dalla perdita di una figura chiave; in presenza dei requisiti i premi sono un costo deducibile.</span></div><div class="leva"><b class="mont">Marchio e royalties</b><span>Il marchio è un patrimonio: quando ha un valore reale e documentato, la sua gestione tramite licenza può generare royalties deducibili.</span></div><a class="leva" href="/#articolo-ires-premiale"><b class="mont">IRES premiale</b><span>Aliquota dal 24% al 20% per le società che reinvestono gli utili e assumono, se tutte le condizioni sono rispettate.</span><em>Approfondisci →</em></a><a class="leva" href="/#articolo-iperammortamento"><b class="mont">Iperammortamento 2026</b><span>Investimenti 4.0 e in energia rinnovabile con deduzioni maggiorate fino al 180%.</span><em>Approfondisci →</em></a><a class="leva" href="/#articolo-incentivi-campania"><b class="mont">Incentivi all'assunzione</b><span>Contributi regionali e nazionali che riducono il costo delle persone che fanno crescere l'impresa.</span><em>Approfondisci →</em></a><a class="leva" href="/#articolo-holding"><b class="mont">Holding e dividendi</b><span>Quando ha senso, una struttura che riduce il prelievo sugli utili e separa gestione e patrimonio.</span><em>Approfondisci →</em></a></div>
   <p class="nota">Le agevolazioni hanno requisiti precisi e possono cambiare con le leggi di bilancio: ogni leva viene verificata sulla normativa in vigore e sulla situazione della singola impresa.</p>
 </div></section>
+
+
+<section class="sim" id="simulatore"><div class="wrap">
+  <span class="kicker" style="color:#9A6F1E">Simulatore di detassazione 2026</span>
+  <h2>Quanto pagheresti con un'altra forma?</h2>
+  <p style="max-width:780px;margin:0">Inserisci i numeri della tua attività, scegli le leve e confronta il carico fiscale e contributivo in cinque forme: ditta individuale, Sas, Srl trasparente, Srl che trattiene gli utili e Srl che li distribuisce. I valori iniziali sono un esempio: sostituiscili con i tuoi.</p>
+  <div class="sim-grid">
+  <div>
+  <div id="sf">
+  <div class="scard"><h3>1. La tua attività</h3><p class="hint">Valori annui, in euro.</p>
+  <div class="sf"><label for="fatturato">Fatturato annuo</label><input type="number" id="fatturato" min="0" step="1000" value="350000"></div><div class="sf"><label for="costi">Costi operativi<small>Esclusi collaboratori e compensi per te</small></label><input type="number" id="costi" min="0" step="1000" value="270000"></div><div class="sf"><label for="collaboratori">Costo collaboratori</label><input type="number" id="collaboratori" min="0" step="1000" value="0"></div><div class="sf"><label for="collabIrapDed">Tipo di collaboratori</label><select id="collabIrapDed"><option value="0">Co.co.co. o altro</option><option value="1">Dipendenti a tempo indeterminato</option></select></div><div class="sf"><label for="commercianti">Gestione INPS</label><select id="commercianti"><option value="1">Commercianti</option><option value="0">Artigiani</option></select></div></div>
+  <div class="scard"><h3>2. Le leve</h3><p class="hint">Attiva solo quelle che hanno senso per te. Nelle forme societarie il simulatore applica le leve compatibili con ciascuna.</p>
+  <div class="lev" data-lev="comp"><label class="lev-h"><input type="checkbox" checked> Compenso da amministratore</label><div class="lev-b"><div class="sf"><label for="compenso">Compenso annuo</label><input type="number" id="compenso" min="0" step="1000" value="24000"></div></div></div><div class="lev" data-lev="tfm"><label class="lev-h"><input type="checkbox" checked> TFM – trattamento di fine mandato</label><div class="lev-b"><div class="sf"><label for="tfm">Accantonamento annuo</label><input type="number" id="tfm" min="0" step="1000" value="10000"></div></div></div><div class="lev" data-lev="km"><label class="lev-h"><input type="checkbox" checked> Rimborsi chilometrici ACI</label><div class="lev-b"><div class="sf"><label for="km">Km annui in trasferta</label><input type="number" id="km" min="0" step="500" value="10000"></div><div class="sf"><label for="costoKm">€/km dalle tabelle ACI</label><input type="number" id="costoKm" min="0" step="0.01" value="0.98"></div></div></div><div class="lev" data-lev="tras"><label class="lev-h"><input type="checkbox" checked> Indennità di trasferta</label><div class="lev-b"><div class="sf"><label for="giorniTrasferta">Giorni fuori comune</label><input type="number" id="giorniTrasferta" min="0" step="1" value="48"></div></div></div><div class="lev" data-lev="roy"><label class="lev-h"><input type="checkbox" checked> Royalties (marchio, metodo, opere dell'ingegno)</label><div class="lev-b"><div class="sf"><label for="royPerc">Royalty in % del fatturato</label><input type="number" id="royPerc" min="0" step="0.5" value="2" max="20"></div><div class="sf"><label for="autore">Sei autore dell'opera?<small>No per i marchi</small></label><select id="autore"><option value="1">Sì</option><option value="0">No</option></select></div><div class="sf"><label for="under35">Hai meno di 35 anni?</label><select id="under35"><option value="1">Sì</option><option value="0">No</option></select></div></div></div><div class="lev" data-lev="buoni"><label class="lev-h"><input type="checkbox" checked> Buoni pasto</label><div class="lev-b"><div class="sf"><label for="giorniLav">Giorni lavorativi</label><input type="number" id="giorniLav" min="0" step="1" value="220"></div><div class="sf"><label for="buono">Valore al giorno (€)</label><input type="number" id="buono" min="0" step="0.5" value="10"></div></div></div><div class="lev" data-lev="fringe"><label class="lev-h"><input type="checkbox" checked> Fringe benefit</label><div class="lev-b"><div class="sf"><label for="fringe">Importo annuo</label><input type="number" id="fringe" min="0" step="100" value="1000"></div><div class="sf"><label for="figli">Figli a carico?</label><select id="figli"><option value="0">No</option><option value="1">Sì</option></select></div></div></div><div class="lev" data-lev="prev"><label class="lev-h"><input type="checkbox" checked> Previdenza complementare</label><div class="lev-b"><div class="sf"><label for="previdenza">Versamento annuo</label><input type="number" id="previdenza" min="0" step="100" value="5300"></div></div></div><div class="lev" data-lev="iper"><label class="lev-h"><input type="checkbox" checked> Iperammortamento</label><div class="lev-b"><div class="sf"><label for="iperInv">Investimento in beni agevolabili</label><input type="number" id="iperInv" min="0" step="5000" value="0"></div></div></div><div class="lev" data-lev="maxi"><label class="lev-h"><input type="checkbox" checked> Maxi deduzione nuovi assunti</label><div class="lev-b"><div class="sf"><label for="nuoviAssunti">Costo annuo dei nuovi assunti<small>Già compreso nei collaboratori</small></label><input type="number" id="nuoviAssunti" min="0" step="1000" value="0"></div></div></div><div class="lev" data-lev="gar"><label class="lev-h"><input type="checkbox" checked> Commissione sulle garanzie del socio</label><div class="lev-b"><div class="sf"><label for="garanzia">Debito garantito da te</label><input type="number" id="garanzia" min="0" step="5000" value="0"></div><div class="sf"><label for="commGar">Commissione annua (%)</label><input type="number" id="commGar" min="0" step="0.1" value="1.5" max="5"></div></div></div><details><summary>Impostazioni avanzate</summary>
+  <div class="sf"><label for="quotaSas">Tua quota nella Sas (%)</label><input type="number" id="quotaSas" min="0" step="1" value="51" max="100"></div><div class="sf"><label for="quotaSrl">Tua quota nella Srl (%)</label><input type="number" id="quotaSrl" min="0" step="1" value="100" max="100"></div><div class="sf"><label for="costiSas">Costi di gestione annui Sas</label><input type="number" id="costiSas" min="0" step="500" value="3000"></div><div class="sf"><label for="costiSrl">Costi di gestione annui Srl</label><input type="number" id="costiSrl" min="0" step="500" value="6000"></div><div class="sf"><label for="distribuiti">Utili distribuiti nella Srl che distribuisce (%)</label><input type="number" id="distribuiti" min="0" step="5" value="100" max="100"></div><div class="sf"><label for="inpsSuUtile">INPS anche sulla quota di utile Srl<small>Posizione prudente</small></label><select id="inpsSuUtile"><option value="1">Sì</option><option value="0">No</option></select></div></details>
+  </div>
+  </div>
+  </div>
+  <div class="sres" id="risultato" aria-live="polite">
+    <div class="big"><p class="lbl">Risparmio annuo stimato</p><p class="num" id="risparmio">–</p><p class="sub" id="heroSub"></p></div>
+    <div class="lock" id="lock">
+      <div class="lc">
+        <div class="scard"><h3>Il carico fiscale nelle cinque forme</h3><div id="bars"></div></div>
+        <div class="scard"><h3>Il confronto nel dettaglio</h3>
+          <div class="twrap"><table id="tab"><thead><tr><th>Forma</th><th>Carico totale</th><th>Pressione</th><th>Risparmio</th><th>Ricchezza netta</th></tr></thead><tbody></tbody></table></div>
+          <p class="snote">Carico totale = imposte della società + contributi + imposte personali + imposta futura stimata sul TFM. Ricchezza netta = liquidità ai soci + quanto resta in società + previdenza complementare. Pressione calcolata sul risultato prima di imposte e leve.</p>
+          <p class="swarn" id="warn"></p>
+        </div>
+      </div>
+      <div class="gate">
+        <span class="kicker" style="color:#9A6F1E;font-size:11px">Risultato completo</span>
+        <h4>Vedi il confronto tra le cinque forme</h4>
+        <p>Lascia i tuoi dati: sblocchi il dettaglio di imposte, pressione fiscale e ricchezza netta per ogni forma, e uno dei nostri professionisti può ricontattarti per approfondire.</p>
+        <form id="gform" novalidate>
+          <label>Nome e cognome<input name="nome" autocomplete="name" required></label>
+          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          <label>Telefono<input name="telefono" type="tel" autocomplete="tel" required></label>
+          <label class="chk"><input name="privacy" type="checkbox" required><span>Ho letto l'<a href="/#privacy" target="_blank">informativa privacy</a> e acconsento al trattamento dei dati per ricevere il risultato ed essere ricontattato dallo studio.</span></label>
+          <label class="chk"><input name="marketing" type="checkbox"><span>Facoltativo: acconsento a ricevere aggiornamenti e comunicazioni dallo studio.</span></label>
+          <button class="btn btn-gold" type="submit" id="g-send" style="justify-self:start">Mostra il risultato</button>
+          <p class="gmsg" id="g-out" role="status"></p>
+        </form>
+      </div>
+    </div>
+    <div class="scta"><h4>Vuoi la simulazione completa?</h4><p>Questa è una stima. Con lo studio la trasformiamo in un piano su misura, con i tuoi numeri reali e tutte le leve applicabili.</p><a class="btn btn-gold" href="#check-up">Richiedi il check-up</a></div>
+    <div class="scard"><h3>Avvertenze</h3>
+      <p class="snote">Stima di confronto: non sostituisce il calcolo delle dichiarazioni e non considera detrazioni personali, variazioni fiscali specifiche e perdite pregresse.</p>
+      <p class="snote">La Srl trasparente richiede soci persone fisiche (massimo 10) e ricavi entro i limiti previsti (artt. 115-116 TUIR).</p>
+      <p class="snote">Ogni leva va applicata solo se ha sostanza economica e documentazione: delibere, perizie, regolamenti, note spese. Il TFM richiede una delibera con data certa anteriore; le royalties una perizia di congruità; i rimborsi e le trasferte solo per spostamenti fuori comune documentati.</p>
+      <p class="snote">Iperammortamento e maxi deduzione riducono IRES e IRPEF ma non IRAP né base INPS. Gli utili trattenuti in Srl saranno tassati quando distribuiti al socio. Parametri normativi 2026: IRPEF 23/33/43%, IRES 24%, IRAP 3,9%, ritenuta dividendi 26%, addizionali stimate.</p>
+    </div>
+  </div>
+  </div>
+</div></section>
+<a class="mbar hide" id="mbar" href="#risultato"><span>Risparmio stimato <b id="mbar-v">–</b></span><i>Vedi il risultato ↓</i></a>
 
 <section class="blu"><div class="wrap">
   <span class="kicker">Il metodo</span>
@@ -166,6 +281,125 @@ f.addEventListener('submit',function(e){
   .then(function(){try{window.va('event',{name:'Richiesta landing SRL',data:{fatturato:d.qualifica.fatturato||''}})}catch(e){}f.innerHTML='<div class="tutta" style="padding:20px 0"><h2 style="font-size:28px">Grazie!</h2><p>Abbiamo ricevuto la tua richiesta: un professionista dello studio ti ricontatta entro un giorno lavorativo.</p><a class="btn btn-gold" href="/">Visita il sito dello studio</a></div>';})
   .catch(function(e){m.textContent=e.message;b.disabled=false;});
 });
+})();
+</script>
+<script>
+(function(){
+const P = {sc1:28000,a1:0.23,sc2:50000,a2:0.33,a3:0.43,addReg:0.0173,addCom:0.008,
+  minimale:18808,aliqComm:0.2448,aliqArt:0.24,sogliaInps:56224,maggInps:0.01,massimale:122295,maternita:7.44,
+  gs:0.24,gsSoc:2/3,ires:0.24,irap:0.039,divid:0.26,buonoMax:10,fringeNo:1000,fringeFigli:2000,prevMax:5300,
+  roy35:0.4,royOver:0.25,trasferta:46.48,dedBuoni:0.75,dedFringe:0.75,tfmSep:0.3,ritGar:0.26,iper:1.8,ammCoef:0.2,maxi:0.2};
+function calcola(d){
+  const irpef=b=>Math.min(b,P.sc1)*P.a1+Math.max(0,Math.min(b,P.sc2)-P.sc1)*P.a2+Math.max(0,b-P.sc2)*P.a3;
+  const forme=[
+    {k:'ditta',nome:'Ditta individuale',soc:0,ires:0,tr:1,dist:0,q:1,inpsSoc:1,cg:0,lev:{comp:0,tfm:0,km:0,tras:0,roy:0,buoni:0,fringe:0,prev:1,gar:0,iper:1,maxi:1}},
+    {k:'sas',nome:'Sas',soc:1,ires:0,tr:1,dist:0,q:d.quotaSas,inpsSoc:1,cg:d.costiSas,lev:{comp:0,tfm:0,km:0,tras:0,roy:1,buoni:0,fringe:0,prev:1,gar:1,iper:1,maxi:1}},
+    {k:'srlt',nome:'Srl trasparente',soc:1,ires:0,tr:1,dist:0,q:d.quotaSrlT,inpsSoc:1,cg:d.costiSrl,lev:{comp:1,tfm:1,km:1,tras:1,roy:1,buoni:1,fringe:1,prev:1,gar:1,iper:1,maxi:1}},
+    {k:'srlr',nome:'Srl, utili trattenuti',soc:1,ires:1,tr:0,dist:0,q:d.quotaSrl,inpsSoc:d.inpsSuUtile,cg:d.costiSrl,lev:{comp:1,tfm:1,km:1,tras:1,roy:1,buoni:1,fringe:1,prev:1,gar:1,iper:1,maxi:1}},
+    {k:'srld',nome:'Srl, utili distribuiti',soc:1,ires:1,tr:0,dist:d.distribuiti,q:d.quotaSrl,inpsSoc:d.inpsSuUtile,cg:d.costiSrl,lev:{comp:1,tfm:1,km:1,tras:1,roy:1,buoni:1,fringe:1,prev:1,gar:1,iper:1,maxi:1}}];
+  const L=d.leve, base=d.fatturato-d.costi-d.collaboratori;
+  return forme.map(f=>{
+    const comp=f.lev.comp*L.comp*d.compenso, haComp=comp>0?1:0;
+    const gsTot=comp*P.gs, gsSoc=gsTot*P.gsSoc, gsAmm=gsTot-gsSoc;
+    const tfm=f.lev.tfm*L.tfm*d.tfm;
+    const km=f.lev.km*L.km*d.km*d.costoKm*haComp;
+    const tras=f.lev.tras*L.tras*d.giorniTrasferta*P.trasferta*haComp;
+    const roy=f.lev.roy*L.roy*d.fatturato*d.royPerc;
+    const buoni=f.lev.buoni*L.buoni*d.giorniLav*Math.min(d.buono,P.buonoMax)*haComp;
+    const fringe=f.lev.fringe*L.fringe*d.fringe*haComp;
+    const soglia=d.figli?P.fringeFigli:P.fringeNo;
+    const fringeEs=fringe<=soglia?fringe:0, fringeImp=fringe-fringeEs;
+    const prev=f.lev.prev*L.prev*Math.min(d.previdenza,P.prevMax);
+    const gar=f.lev.gar*L.gar*d.garanzia*d.commGar;
+    const iper=f.lev.iper*L.iper*d.iperInv*P.iper*P.ammCoef;
+    const maxi=f.lev.maxi*L.maxi*d.nuoviAssunti*P.maxi;
+    const ris=d.fatturato-d.costi-d.collaboratori-f.cg-(comp+gsSoc+tfm+km+tras+roy+buoni+fringe+gar);
+    const indet=buoni*(1-P.dedBuoni)+fringe*(1-P.dedFringe);
+    const r50=ris+indet, r52=r50-(iper+maxi);
+    const baseIrap=r50+comp+gsSoc+tfm+gar+(d.collabIrapDed?0:d.collaboratori);
+    const irap=f.soc*Math.max(0,baseIrap)*P.irap, ires=f.ires*Math.max(0,r52)*P.ires;
+    const utile=ris-irap-ires;
+    const div=(1-f.tr)*Math.max(0,utile)*f.dist, tratt=(1-f.tr)*(utile-div);
+    const imp=f.tr*f.q*r52, prel=f.tr*f.q*utile, divA=f.q*div;
+    const royImp=roy*(1-(d.autore?(d.under35?P.roy35:P.royOver):0));
+    const esenti=km+tras+buoni+fringeEs;
+    const baseInps=f.tr===1?Math.max(0,f.q*r50):f.inpsSoc*f.q*Math.max(0,r50);
+    const bInps=Math.min(Math.max(baseInps,P.minimale),P.massimale);
+    const al=d.commercianti?P.aliqComm:P.aliqArt;
+    const inps=al*Math.min(bInps,P.sogliaInps)+(al+P.maggInps)*Math.max(0,bInps-P.sogliaInps)+P.maternita;
+    const bIrpef=Math.max(0,Math.max(0,imp)+comp-gsAmm+royImp+fringeImp-inps-prev);
+    const irpA=irpef(bIrpef), addA=bIrpef*(P.addReg+P.addCom), ritDivA=divA*P.divid, ritGar=gar*P.ritGar;
+    const liqA=prel+divA+comp-gsAmm+roy+esenti+fringeImp+gar-inps-irpA-addA-ritDivA-ritGar-prev;
+    const impB=f.tr*(1-f.q)*r52, prelB=f.tr*(1-f.q)*utile, divB=(1-f.q)*div;
+    const bB=Math.max(0,impB), irpB=irpef(bB), addB=bB*(P.addReg+P.addCom), ritB=divB*P.divid;
+    const liqB=prelB+divB-irpB-addB-ritB;
+    const impSoc=irap+ires, contributi=inps+gsTot, impPers=irpA+addA+ritDivA+ritGar+irpB+addB+ritB, tfmTax=tfm*P.tfmSep;
+    const carico=impSoc+contributi+impPers+tfmTax;
+    const ricchezza=(liqA+liqB)+(tratt+tfm-tfmTax)+prev;
+    return {k:f.k,nome:f.nome,impSoc,contributi,impPers,tfmTax,carico,liquidita:liqA+liqB,inSocieta:tratt+tfm-tfmTax,previdenza:prev,ricchezza,pressione:base>0?carico/base:0};
+  });
+}
+
+
+const $=id=>document.getElementById(id);
+const num=id=>{const v=parseFloat($(id).value);return isFinite(v)?v:0};
+const eur=v=>{const n=Math.round(v),a=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');return (n<0?'−':'')+a+' €'};
+function leggi(){
+  const leve={};document.querySelectorAll('.lev').forEach(l=>{const on=l.querySelector('input[type=checkbox]').checked;leve[l.dataset.lev]=on?1:0;l.classList.toggle('off',!on)});
+  const q=num('quotaSrl')/100;
+  return {fatturato:num('fatturato'),costi:num('costi'),collaboratori:num('collaboratori'),collabIrapDed:+$('collabIrapDed').value,commercianti:+$('commercianti').value,
+    quotaSas:num('quotaSas')/100,quotaSrlT:q,quotaSrl:q,costiSas:num('costiSas'),costiSrl:num('costiSrl'),distribuiti:num('distribuiti')/100,inpsSuUtile:+$('inpsSuUtile').value,
+    compenso:num('compenso'),tfm:num('tfm'),km:num('km'),costoKm:num('costoKm'),giorniTrasferta:num('giorniTrasferta'),royPerc:num('royPerc')/100,autore:+$('autore').value,under35:+$('under35').value,
+    giorniLav:num('giorniLav'),buono:num('buono'),fringe:num('fringe'),figli:+$('figli').value,previdenza:num('previdenza'),garanzia:num('garanzia'),commGar:num('commGar')/100,iperInv:num('iperInv'),nuoviAssunti:num('nuoviAssunti'),leve};
+}
+function aggiorna(){
+  const d=leggi(), r=calcola(d), base=r[0];
+  const best=r.slice(1).reduce((a,b)=>b.carico<a.carico?b:a);
+  const risp=base.carico-best.carico;
+  $('risparmio').textContent=risp>0?eur(risp):'0 €';
+  $('heroSub').textContent=risp>0?`Con la forma "${best.nome}" rispetto alla ditta individuale. In dieci anni sono circa ${eur(risp*10)}.`:'Con questi dati la ditta individuale resta la forma più leggera.';
+  const max=Math.max(...r.map(x=>x.carico),1);
+  $('bars').innerHTML=r.map(x=>{const w=Math.max(0,x.carico)/max*68;const cls=x===best&&risp>0?'best':x===base?'base':'';return `<div class="bar"><span class="name ${x===best&&risp>0?'best':''}">${x.nome}</span><span class="track"><span class="fill ${cls}" style="display:block;width:${w}%"></span><span class="val" style="left:calc(${w}% + 8px)">${eur(x.carico)}</span></span></div>`}).join('');
+  $('tab').querySelector('tbody').innerHTML=r.map(x=>{const s=base.carico-x.carico;return `<tr class="${x===best&&risp>0?'best':''}"><td>${x.nome}</td><td>${eur(x.carico)}</td><td>${(x.pressione*100).toFixed(1).replace('.',',')}%</td><td class="${s>0?'pos':s<0?'neg':''}">${x===base?'–':(s>0?'+':'')+eur(s)}</td><td>${eur(x.ricchezza)}</td></tr>`}).join('');
+  const w=[];
+  if(d.leve.buoni&&d.buono>10)w.push('Il buono pasto supera il limite esente di 10 € al giorno.');
+  if(d.leve.fringe&&d.fringe>(d.figli?2000:1000))w.push('Il fringe benefit supera la soglia: diventa imponibile per intero.');
+  if(d.leve.prev&&d.previdenza>5300)w.push('La previdenza complementare supera il limite deducibile di 5.300 €.');
+  if(d.fatturato-d.costi-d.collaboratori<=0)w.push('Il risultato prima di imposte e leve è zero o negativo.');
+  $('warn').textContent=w.join(' ');
+}
+
+$('sf').addEventListener('input',aggiorna);$('sf').addEventListener('change',aggiorna);aggiorna();
+/* risultato completo in cambio di nome, email e telefono */
+var lock=$('lock'),gf=$('gform'),out=$('g-out'),btn=$('g-send'),KEY='sl-sim-ok',ok=false;
+try{ok=localStorage.getItem(KEY)==='1'}catch(_){}
+lock.classList.toggle('locked',!ok);
+var ONLINE=/(^|\.)studiolongobardi\.it$|\.vercel\.app$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
+gf.addEventListener('submit',function(e){
+  e.preventDefault();out.textContent='';
+  var v=function(n){var x=gf.querySelector('[name='+n+']');return x.type==='checkbox'?x.checked:x.value.trim()};
+  if(!v('nome'))return out.textContent='Inserisci nome e cognome.';
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v('email')))return out.textContent="Controlla l'indirizzo email.";
+  if(v('telefono').replace(/\D/g,'').length<6)return out.textContent='Inserisci un numero di telefono valido.';
+  if(!v('privacy'))return out.textContent='Serve il consenso privacy per mostrarti il risultato.';
+  var d=leggi(),r=calcola(d),base=r[0],best=r.slice(1).reduce(function(a,b){return b.carico<a.carico?b:a});
+  var risp=Math.max(0,Math.round(base.carico-best.carico));
+  var dati={tipo:'contatto',area:'Simulatore di detassazione',nome:v('nome'),email:v('email'),telefono:v('telefono'),privacy:true,marketing:v('marketing'),t:Math.round(performance.now()),
+    simulazione:{fatturato:d.fatturato,costi:d.costi,collaboratori:d.collaboratori,forma:risp>0?best.nome:'Ditta individuale (nessun risparmio)',risparmio:risp,leve:Object.keys(d.leve).filter(function(k){return d.leve[k]})}};
+  var apri=function(){try{localStorage.setItem(KEY,'1')}catch(_){}lock.classList.remove('locked')};
+  if(!ONLINE){apri();return}
+  btn.disabled=true;btn.textContent='Un attimo…';
+  fetch('/api/richiesta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dati)})
+  .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.error||'Non siamo riusciti a registrare la richiesta. Riprova tra poco.')})})
+  .then(function(){try{window.va('event',{name:'Simulatore detassazione',data:{risparmio:risp}})}catch(_){}apri()})
+  .catch(function(e){out.textContent=e.message;btn.disabled=false;btn.textContent='Mostra il risultato'});
+});
+/* barretta del risultato sul telefono */
+var bar=$('mbar'),mv=$('mbar-v'),src=$('risparmio'),sim=$('simulatore');
+var sync=function(){mv.textContent=src.textContent};sync();new MutationObserver(sync).observe(src,{childList:true,characterData:true,subtree:true});
+var inSim=false,vedoRis=false;
+new IntersectionObserver(function(es){es.forEach(function(e){if(e.target===sim)inSim=e.isIntersecting;else vedoRis=e.isIntersecting});bar.classList.toggle('hide',!inSim||vedoRis)}).observe(sim);
+new IntersectionObserver(function(es){vedoRis=es[0].isIntersecting;bar.classList.toggle('hide',!inSim||vedoRis)}).observe($('risultato'));
 })();
 </script>
 </body>

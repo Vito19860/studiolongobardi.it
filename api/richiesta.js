@@ -4,9 +4,22 @@
 import { notifica } from "./_notifica.js";
 import { body, clip, config, db, emailOk, soloPost } from "./_lib.js";
 
-const AREE = ["Pianificazione fiscale avanzata SRL", "Fiscale e contabilità", "Check-up fiscale", "Lavoro e paghe", "Controllo di gestione", "Consulenza holding", "Formazione", "Elevate", "Lavora con noi", "Altro"];
+const AREE = ["Simulatore di detassazione", "Pianificazione fiscale avanzata SRL", "Fiscale e contabilità", "Check-up fiscale", "Lavoro e paghe", "Controllo di gestione", "Consulenza holding", "Formazione", "Elevate", "Lavora con noi", "Altro"];
 
 const SCELTE = {"forma": ["Ditta individuale", "Libero professionista", "Società di persone (snc, sas)", "SRL", "SpA o altra società", "Non ho ancora un'attività"], "fatturato": ["Fino a 250.000 €", "250.000 – 1 milione €", "1 – 5 milioni €", "Oltre 5 milioni €", "Preferisco non dirlo"], "dipendenti": ["Nessuno", "1 – 9", "10 – 49", "50 o più"], "urgenza": ["Entro un mese", "Entro 3 mesi", "Sto solo valutando"]};
+
+const NOMI_LEVE = { comp: "compenso amministratore", tfm: "TFM", km: "rimborsi chilometrici", tras: "trasferte", roy: "royalties", buoni: "buoni pasto", fringe: "fringe benefit", prev: "previdenza complementare", iper: "iperammortamento", maxi: "maxi deduzione assunti", gar: "garanzie del socio" };
+const intero = (v) => (Number.isFinite(+v) ? Math.max(-1e9, Math.min(1e9, Math.round(+v))) : 0);
+const euro = (v) => intero(v).toLocaleString("it-IT") + " €";
+
+function simulazione(x) {
+  if (!x || typeof x !== "object") return null;
+  return {
+    fatturato: intero(x.fatturato), costi: intero(x.costi), collaboratori: intero(x.collaboratori),
+    forma: clip(x.forma, 60) || "–", risparmio: Math.max(0, intero(x.risparmio)),
+    leve: Array.isArray(x.leve) ? x.leve.filter((k) => NOMI_LEVE[k]).slice(0, 11) : [],
+  };
+}
 
 function qualifica(q) {
   if (!q || typeof q !== "object") return null;
@@ -33,6 +46,8 @@ export default async function handler(req, res) {
   if (tipo === "contatto" && !emailOk(email)) return res.status(400).json({ error: "Controlla l'indirizzo email." });
   if (tipo === "test" && !emailOk(email) && !/[0-9]{6,}/.test(telefono.replace(/\D/g, ""))) return res.status(400).json({ error: "Lascia un telefono o un'email per essere ricontattato." });
   if (b.privacy !== true) return res.status(400).json({ error: "Serve il consenso all'informativa privacy." });
+  const sim = b.area === "Simulatore di detassazione" ? simulazione(b.simulazione) : null;
+  if (sim && telefono.replace(/\D/g, "").length < 6) return res.status(400).json({ error: "Inserisci un numero di telefono valido." });
 
   let dati = null;
   if (tipo === "test" && b.test && typeof b.test === "object") {
@@ -44,6 +59,7 @@ export default async function handler(req, res) {
     };
   }
 
+  if (sim) dati = { simulazione: sim };
   const qual = qualifica(b.qualifica);
   if (qual) dati = { ...(dati || {}), ...qual };
 
@@ -54,7 +70,9 @@ export default async function handler(req, res) {
     telefono: telefono || null,
     azienda: clip(b.azienda, 160) || null,
     area: tipo === "test" ? "Check-up fiscale" : (AREE.includes(b.area) ? b.area : "Altro"),
-    messaggio: clip(b.messaggio, 4000) || null,
+    messaggio: sim
+      ? `Simulazione: fatturato ${euro(sim.fatturato)}, costi ${euro(sim.costi)}, collaboratori ${euro(sim.collaboratori)}. Forma più leggera: ${sim.forma}. Risparmio stimato: ${euro(sim.risparmio)} l'anno.` + (sim.leve.length ? ` Leve attive: ${sim.leve.map((k) => NOMI_LEVE[k]).join(", ")}.` : "")
+      : (clip(b.messaggio, 4000) || null),
     dati,
     consenso_privacy: true,
     consenso_marketing: b.marketing === true,
@@ -70,7 +88,7 @@ export default async function handler(req, res) {
 
   const titolo = tipo === "test"
     ? `Test d'impresa: ${nome} · ${dati ? dati.punteggio + "/12" : ""}${dati && dati.pilastro_debole ? " · da rafforzare: " + dati.pilastro_debole : ""}`
-    : `Nuova richiesta: ${row.area} · ${nome}`;
+    : sim ? `Simulatore: ${nome} · risparmio stimato ${euro(sim.risparmio)} l'anno` : `Nuova richiesta: ${row.area} · ${nome}`;
   await notifica(titolo, {
     Nome: nome, Email: row.email, Telefono: row.telefono, Azienda: row.azienda, Area: row.area,
     Messaggio: row.messaggio,
