@@ -383,7 +383,7 @@ function mostra(){
     [].forEach.call(document.querySelectorAll('[data-apri]'),function(d){d.onclick=function(){var id=+d.dataset.apri;APERTA=APERTA===id?null:id;mostra()}});
   }else{
     $('#r-lista').innerHTML=L.map(function(x){
-      return '<div class="card riga" style="cursor:default"><span style="flex:1 1 300px;display:flex;flex-direction:column;gap:3px"><b>'+esc(RT==='libro'?x.nome:x.email)+'</b><span class="ok">'+(RT==='libro'?(x.email?'<a href="mailto:'+esc(x.email)+'">'+esc(x.email)+'</a>':'')+(x.telefono?' · <a href="tel:'+esc(tel(x.telefono))+'">'+esc(x.telefono)+'</a> · <a href="https://wa.me/'+esc(tel(x.telefono).replace(/^\+/,'').replace(/^(?!39)(3\d{8,9})$/,'39$1'))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+' · Intelligenza Fiscale'+(x.consenso_marketing?' · <strong style="color:#2E7D55">ok comunicazioni</strong>':''):(x.lista==='elevate'?'Avvisami Elevate 2027':'Aggiornamenti del blog'))+' · '+dt(x.creata_il||x.creato_il)+'</span></span>'
+      return '<div class="card riga" style="cursor:default"><span style="flex:1 1 300px;display:flex;flex-direction:column;gap:3px"><b>'+esc(RT==='libro'?x.nome:x.email)+'</b><span class="ok">'+(RT==='libro'?(x.email?'<a href="mailto:'+esc(x.email)+'">'+esc(x.email)+'</a>':'')+(x.telefono?' · <a href="tel:'+esc(tel(x.telefono))+'">'+esc(x.telefono)+'</a> · <a href="https://wa.me/'+esc(tel(x.telefono).replace(/^\+/,'').replace(/^(?!39)(3\d{8,9})$/,'39$1'))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+' · Intelligenza Fiscale'+(x.consenso_marketing?' · <strong style="color:#2E7D55">ok comunicazioni</strong>':''):(x.lista==='elevate'?'Lista prioritaria Elevate 2027'+(x.azienda?' · <strong>'+esc(x.azienda)+'</strong>':''):'Aggiornamenti del blog'))+' · '+dt(x.creata_il||x.creato_il)+'</span></span>'
        +(dir?'<button class="btn red tab-mini" data-del="'+x.id+'">Elimina</button>':'')+'</div>';
     }).join('');
     [].forEach.call(document.querySelectorAll('[data-del]'),function(b){b.onclick=function(){elimina(RT==='libro'?'richieste_libro':'iscritti',+b.dataset.del)}});
@@ -397,7 +397,7 @@ $('#esporta').onclick=function(){
   var L=filtrati(),C;
   if(RT==='richieste')C=[['Data','Tipo','Stato','Nome','Azienda','Email','Telefono','Area','Forma','Fatturato','Dipendenti','Urgenza','Messaggio','Risparmio simulato','Forma più leggera','Punteggio test','Pilastro debole','Consenso aggiornamenti','Nota interna','Gestita da'],L.map(function(x){var d=x.dati||{};return[dt(x.creata_il),x.tipo,SN[x.stato]||x.stato,x.nome,x.azienda,x.email,x.telefono,x.area,d.forma,d.fatturato,d.dipendenti,d.urgenza,x.messaggio,d.simulazione?d.simulazione.risparmio:'',d.simulazione?d.simulazione.forma:'',d.punteggio,d.pilastro_debole,x.consenso_marketing?'sì':'no',x.nota,x.gestita_da]})];
   else if(RT==='libro')C=[['Data','Nome','Email','Telefono','Consenso comunicazioni'],L.map(function(x){return[dt(x.creata_il),x.nome,x.email,x.telefono,x.consenso_marketing?'sì':'no']})];
-  else C=[['Data','Email','Lista'],L.map(function(x){return[dt(x.creato_il),x.email,x.lista]})];
+  else C=[['Data','Email','Azienda','Lista'],L.map(function(x){return[dt(x.creato_il),x.email,x.azienda,x.lista]})];
   var cell=function(v){v=v==null?'':String(v);if(/^[=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
   var csv='﻿'+[C[0]].concat(C[1]).map(function(r){return r.map(cell).join(';')}).join('\r\n');
   var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
