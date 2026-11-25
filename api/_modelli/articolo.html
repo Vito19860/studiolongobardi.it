@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITOLO__</title>
+<meta name="description" content="__DESCRIZIONE__">
+<link rel="preload" href="fonts/montserrat.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/inter.woff" as="font" type="font/woff" crossorigin>
+<style>
+@font-face{font-family:Montserrat;src:url(fonts/montserrat.woff) format("woff");font-weight:500 800;font-style:normal;font-display:swap}
+@font-face{font-family:Inter;src:url(fonts/inter.woff) format("woff");font-weight:400 600;font-style:normal;font-display:swap}
+@font-face{font-family:"Cormorant Garamond";src:url(fonts/cormorant-italic.woff) format("woff");font-weight:500 600;font-style:italic;font-display:swap}
+</style>
+<meta property="og:title" content="__TITOLO__">
+<meta property="og:description" content="__DESCRIZIONE__">
+<meta property="og:image" content="__IMMAGINE__">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="__URL__">
+<meta property="og:type" content="article">
+<link rel="canonical" href="__URL__">
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/cookie.js?v=1"></script>
+
+<style>
+body{margin:0;background:#0F2C5C}
+a{color:#E9BE6E}a:hover{color:#D4A24C}
+.wrap{max-width:1240px;margin:0 auto;padding-left:24px;padding-right:24px}
+.mont{font-family:Montserrat,Inter,sans-serif}
+.up{text-transform:uppercase}
+.btn{display:inline-block;padding:16px 28px;font-family:Montserrat,Inter,sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:transform .25s,background-color .25s,color .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:#D4A24C;color:#0A1F44}.btn-gold:hover{background:#E3B566;color:#0A1F44;box-shadow:0 12px 26px rgba(212,162,76,.35)}
+.btn-line{border:2px solid #FFFFFF;color:#FFFFFF;padding:14px 26px}.btn-line:hover{background:#FFFFFF;color:#0A1F44}
+.btn-blue{background:#0F2C5C;color:#FFFFFF}.btn-blue:hover{background:#0A1F44;color:#FFFFFF}
+.btn-lineb{border:2px solid #0F2C5C;color:#0F2C5C;padding:14px 26px}.btn-lineb:hover{background:#0F2C5C;color:#FFFFFF}
+.navi{position:relative}
+.navi > a{display:block;padding:26px 0;color:#FFFFFF;text-decoration:none;font-family:Montserrat,Inter,sans-serif;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.navi:hover > a,.navi:focus-within > a{color:#D4A24C}
+.mega{display:none;position:absolute;top:100%;left:-24px;z-index:60;min-width:300px;background:#FFFFFF;border-top:3px solid #D4A24C;box-shadow:0 24px 50px rgba(3,10,25,.25);padding:14px}
+.navi:hover .mega,.navi:focus-within .mega{display:block;animation:drop .25s ease both}
+.mega a{display:block;padding:11px 14px;color:#0F2C5C;text-decoration:none;border-radius:2px}
+.mega a:hover{background:#F3F6FB;color:#9A6F1E}
+.mega small{display:block;color:#5E6B85;font-size:13px}
+@keyframes drop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.mob{display:none}
+.mob summary{list-style:none;cursor:pointer}
+.mob summary::-webkit-details-marker{display:none}
+@media (max-width: 1023px){.nav{display:none !important}.mob{display:block}.topi{display:none}}
+.slide{position:absolute;inset:0;transition:opacity 1s ease}
+.slide-bg{position:absolute;inset:-3%;background-size:cover;background-position:center;animation:kb 14s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.08)}}
+.bg-elev{background-image:url(img/elevate-sala.jpg);background-position:center 58%}
+.bg-col{background-image:url(img/colonnato.jpg);background-position:center 45%}
+.bg-palco{background-image:url(img/palco.jpg);background-position:center 40%}
+.sl-in{animation:slin .9s cubic-bezier(.2,.8,.2,1) both}
+.sl-in2{animation:slin .9s cubic-bezier(.2,.8,.2,1) .15s both}
+.sl-in3{animation:slin .9s cubic-bezier(.2,.8,.2,1) .3s both}
+@keyframes slin{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+.prog{animation:prog 6.5s linear both}
+@keyframes prog{from{width:0}to{width:100%}}
+.arrow{width:52px;height:52px;border:1px solid rgba(255,255,255,.45);background:rgba(10,31,68,.35);color:#FFFFFF;border-radius:50%;cursor:pointer;font-size:20px;transition:background-color .25s,border-color .25s}
+.arrow:hover{background:#D4A24C;border-color:#D4A24C;color:#0A1F44}
+.js .rv{opacity:0;transform:translateY(46px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s !important}.d2{transition-delay:.2s !important}.d3{transition-delay:.3s !important}.d4{transition-delay:.4s !important}
+.card{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.card:hover{transform:translateY(-8px);box-shadow:0 28px 54px rgba(3,10,25,.22)}
+.tile{transition:background-color .3s,transform .3s}
+.tile:hover{background:#D4A24C !important;transform:translateY(-6px)}
+.tile:hover .tl{color:#0A1F44 !important}
+.zoom{overflow:hidden}
+.zoom img{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.zoom:hover img{transform:scale(1.07)}
+.book{transform:perspective(900px) rotateY(-18deg);transition:transform .6s cubic-bezier(.2,.8,.2,1);box-shadow:24px 30px 50px rgba(3,10,25,.45)}
+.book:hover{transform:perspective(900px) rotateY(-4deg)}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (max-width: 760px){.h-hero{font-size:44px !important}.h-sec{font-size:32px !important}}
+@media (prefers-reduced-motion: reduce){.slide-bg,.sl-in,.sl-in2,.sl-in3,.prog,.pulse,.mega{animation:none !important}.js .rv{opacity:1;transform:none;transition:none}}
+
+.slide{opacity:0;z-index:1}
+.slide.active{opacity:1;z-index:2}
+.slide:not(.active) .sl-in,.slide:not(.active) .sl-in2,.slide:not(.active) .sl-in3{animation:none;opacity:0}
+.pbar.run{animation:prog 6.5s linear both}
+.pbar.full{width:100% !important}
+html{scroll-behavior:smooth}
+#footer a[href^="mailto"]{overflow-wrap:anywhere;font-size:14.5px}
+.qopt{display:block;width:100%;text-align:left;font:inherit;font-size:17px;padding:16px 20px;min-height:56px;margin-bottom:10px;background:#F3F6FB;color:#0F2C5C;border:1px solid #E2E8F1;border-radius:2px;cursor:pointer;transition:border-color .2s,transform .2s,background-color .2s}
+.qopt:hover{border-color:#D4A24C;transform:translateX(6px)}
+.qopt.sel{background:#FBF3E4;border-color:#D4A24C}
+.qin{animation:slin .5s cubic-bezier(.2,.8,.2,1) both}
+.qbar{height:10px;background:#E2E8F1;border-radius:999px;overflow:hidden}
+.qbar span{display:block;height:100%;border-radius:999px;width:0;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.qfield{font:inherit;font-size:16px;padding:13px;border:1px solid #C9D3E3;border-radius:2px;width:100%;box-sizing:border-box}
+
+.chip{font-family:Montserrat,Inter,sans-serif;padding:10px 18px;border:1px solid #C9D3E3;background:#FFFFFF;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.1em;color:#0F2C5C;cursor:pointer;min-height:40px}
+.chip.on,.chip:hover{background:#0F2C5C;border-color:#0F2C5C;color:#FFFFFF}
+.view[hidden],main[hidden],#strumenti-link[hidden],#strumenti-form[hidden]{display:none!important}
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AccountingService","@id":"https://www.studiolongobardi.it/#studio","name":"Studio Longobardi","legalName":"ADVANCE STP S.r.l.","description":"Studio di consulenza fiscale, del lavoro e d'impresa a Gragnano (NA): fiscale e contabilità, lavoro e paghe, controllo di gestione, consulenza holding e formazione.","url":"https://www.studiolongobardi.it/","logo":"https://www.studiolongobardi.it/img/logo-chiaro.png","image":"https://www.studiolongobardi.it/img/condivisione.jpg","telephone":"+39 081 801 1388","email":"info@studiolongobardi.it","vatID":"IT08187871218","address":{"@type":"PostalAddress","streetAddress":"Via Castellammare 71","addressLocality":"Gragnano","postalCode":"80054","addressRegion":"NA","addressCountry":"IT"},"areaServed":["Gragnano","Castellammare di Stabia","Provincia di Napoli","Campania"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"19:30"}],"sameAs":["https://www.instagram.com/studiolongobardi/","https://www.facebook.com/studiolongobardi1/"],"founder":{"@type":"Person","name":"Vito Longobardi"}}</script>
+<!--DATI_ARTICOLO-->
+</head>
+<body data-pagina="articolo">
+<div id="root" style="background: #0F2C5C; color: #D3DDEE; font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.65">
+
+<!-- BARRA DI SERVIZIO -->
+<div style="background: #0A1F44; color: #C9D3E3; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,.08)">
+<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 24px; padding-top: 9px; padding-bottom: 9px">
+<span class="topi">Via Castellammare 71, Gragnano (NA) · Ricevimento su appuntamento</span>
+<span style="display: flex; flex-wrap: wrap; gap: 6px 22px"><a href="tel:+390818011388" style="color: #E9BE6E; text-decoration: none">Tel. 081 801 1388</a><a href="https://wa.me/390818011388" style="color: #E9BE6E; text-decoration: none">WhatsApp</a><a href="mailto:info@studiolongobardi.it" style="color: #C9D3E3; text-decoration: none">info@studiolongobardi.it</a><a href="https://www.instagram.com/studiolongobardi/" style="color: #C9D3E3; text-decoration: none">Instagram</a><a href="https://www.facebook.com/studiolongobardi1/" style="color: #C9D3E3; text-decoration: none">Facebook</a></span>
+</div>
+</div>
+
+<!-- HEADER CON MEGA MENU -->
+<div style="position: sticky; top: 0; z-index: 50; background: #0F2C5C; border-bottom: 1px solid rgba(255,255,255,.1); box-shadow: 0 10px 30px rgba(3,10,25,.25)">
+<div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<a href="#" aria-label="Studio Longobardi, home" style="display: block; line-height: 0; padding: 12px 0"><img src="img/logo-chiaro.png" alt="Studio Longobardi · Strategia, controllo, crescita" style="height: 50px; width: auto"></a>
+<nav class="nav" aria-label="Menu principale" style="display: flex; align-items: center; gap: 30px">
+<div class="navi"><a href="/lo-studio">Lo studio ▾</a><div class="mega"><a href="/lo-studio">Chi siamo<small>Storia, metodo e valori</small></a><a href="/lo-studio">Le persone<small>Chi ti segue nello studio</small></a><a href="#storie">Casi tipo<small>Come lavoriamo sui numeri</small></a><a href="/contatti">Lavora con noi<small>Entra nella squadra</small></a></div></div>
+<div class="navi"><a href="#servizi">Servizi ▾</a><div class="mega"><a href="/servizi/fiscale-contabilita">Fiscale e contabilità<small>Pilastro Fisco</small></a><a href="/servizi/lavoro-paghe">Lavoro e paghe<small>Pilastro Persone</small></a><a href="/servizi/controllo-di-gestione">Controllo di gestione<small>Pilastro Liquidità</small></a><a href="/servizi/consulenza-holding">Consulenza holding<small>Patrimonio e protezione</small></a><a href="/servizi/formazione">Formazione<small>Pilastro Tu</small></a></div></div>
+<div class="navi"><a href="#eventi">Eventi ▾</a><div class="mega"><a href="/elevate">Elevate<small>L'evento dello studio</small></a><a href="#eventi">Corsi in aula<small>Fiscale, lavoro, piani finanziari</small></a><a href="#eventi">Calendario<small>Tutti i prossimi appuntamenti</small></a></div></div>
+<div class="navi"><a href="#risorse">Risorse ▾</a><div class="mega"><a href="#libro">Intelligenza Fiscale<small>Il libro, gratis</small></a><a href="#test">Il test dei sei pilastri<small>Quanto è solida la tua impresa?</small></a><a href="/pianificazione-fiscale-srl#simulatore">Simulatore di detassazione<small>Quanto risparmieresti con un'altra forma?</small></a><a href="#strumenti">Strumenti Excel<small>Piano finanziario e cruscotto del patrimonio</small></a><a href="#approfondimenti">Approfondimenti<small>Articoli e novità fiscali</small></a></div></div>
+<div class="navi"><a href="/contatti">Contatti</a></div>
+<a href="/contatti" class="btn btn-gold" style="padding: 13px 20px; font-size: 12px">Richiedi una consulenza</a>
+</nav>
+<details class="mob"><summary class="mont up" style="padding: 10px 16px; border: 1px solid rgba(255,255,255,.5); border-radius: 2px; font-weight: 700; font-size: 13px; color: #FFFFFF">Menu</summary><div style="position: absolute; left: 0; right: 0; top: 100%; background: #FFFFFF; padding: 8px 24px 20px; box-shadow: 0 20px 40px rgba(3,10,25,.3)"><a href="/lo-studio" style="display: block; padding: 12px 0; border-bottom: 1px solid #E2E8F1; color: #0F2C5C; text-decoration: none; font-weight: 600">Lo studio</a><a href="#servizi" style="display: block; padding: 12px 0; border-bottom: 1px solid #E2E8F1; color: #0F2C5C; text-decoration: none; font-weight: 600">Servizi</a><a href="#eventi" style="display: block; padding: 12px 0; border-bottom: 1px solid #E2E8F1; color: #0F2C5C; text-decoration: none; font-weight: 600">Eventi</a><a href="#risorse" style="display: block; padding: 12px 0; border-bottom: 1px solid #E2E8F1; color: #0F2C5C; text-decoration: none; font-weight: 600">Risorse</a><a href="/contatti" style="display: block; padding: 12px 0; color: #0F2C5C; text-decoration: none; font-weight: 600">Contatti</a></div></details>
+</div>
+</div>
+
+
+<!-- VISTA: TUTTI GLI APPROFONDIMENTI -->
+
+
+
+<!-- VISTA: AREA RISERVATA (anteprima) -->
+
+<!--ARTICOLO-->
+<!-- FOOTER -->
+<div id="footer" style="background: #0A1F44; color: #C9D3E3; font-size: 15px">
+<div class="wrap" style="padding-top: 80px; padding-bottom: 44px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; grid-column: span 1"><img src="img/logo-chiaro.png" alt="Studio Longobardi" style="width: 220px; height: auto"><span style="font-size: 14px; color: #A9B8D2">Studio Longobardi è un marchio di<br>ADVANCE STP S.r.l. – società tra professionisti<br>Via Castellammare 71, 80054 Gragnano (NA)<br>P.IVA 08187871218</span></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span class="mont up" style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #E9BE6E">Servizi</span><a href="/servizi/fiscale-contabilita" style="color: #C9D3E3; text-decoration: none">Fiscale e contabilità</a><a href="/servizi/lavoro-paghe" style="color: #C9D3E3; text-decoration: none">Lavoro e paghe</a><a href="/servizi/controllo-di-gestione" style="color: #C9D3E3; text-decoration: none">Controllo di gestione</a><a href="/servizi/consulenza-holding" style="color: #C9D3E3; text-decoration: none">Consulenza holding</a><a href="/servizi/formazione" style="color: #C9D3E3; text-decoration: none">Formazione</a></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span class="mont up" style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #E9BE6E">Studio</span><a href="/lo-studio" style="color: #C9D3E3; text-decoration: none">Chi siamo</a><a href="/elevate" style="color: #C9D3E3; text-decoration: none">Elevate</a><a href="#approfondimenti" style="color: #C9D3E3; text-decoration: none">Approfondimenti</a><a href="/contatti" style="color: #C9D3E3; text-decoration: none">Lavora con noi</a></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span class="mont up" style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #E9BE6E">Link utili</span><a href="/privacy" style="color: #C9D3E3; text-decoration: none">Privacy policy</a><a href="/cookie" style="color: #C9D3E3; text-decoration: none">Cookie policy</a><a href="#" data-cookie-preferenze style="color: #C9D3E3; text-decoration: none">Preferenze cookie</a><a href="/note-legali" style="color: #C9D3E3; text-decoration: none">Note legali</a><a href="/staff" data-staff style="color: #C9D3E3; text-decoration: none">Accesso staff</a></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span class="mont up" style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #E9BE6E">Contatti</span><a href="tel:+390818011388" style="color: #C9D3E3; text-decoration: none">Tel. 081 801 1388</a><a href="https://wa.me/390818011388" style="color: #C9D3E3; text-decoration: none">WhatsApp 081 801 1388</a><a href="mailto:info@studiolongobardi.it" style="color: #C9D3E3">info@studiolongobardi.it</a><a href="mailto:commerciale@studiolongobardi.it" style="color: #C9D3E3">commerciale@studiolongobardi.it</a><a href="/contatti" class="btn btn-gold" style="align-self: flex-start; padding: 12px 18px; font-size: 12px">Hai bisogno d'aiuto?</a></div>
+</div>
+<div class="wrap" style="padding-top: 22px; padding-bottom: 28px; border-top: 1px solid rgba(255,255,255,.12); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; font-size: 13px; color: #A9B8D2"><span>© 2026 Studio Longobardi · ADVANCE STP S.r.l. · P.IVA 08187871218</span><span style="display: flex; gap: 10px"><a href="https://www.instagram.com/studiolongobardi/" aria-label="Instagram" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg></a><a href="https://www.facebook.com/studiolongobardi1/" aria-label="Facebook" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v7h4v-7h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"></path></svg></a><a href="https://wa.me/390818011388" aria-label="WhatsApp" title="WhatsApp" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 1.9 3 4.7 4.2 1.8.8 2.5.8 3.4.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"></path></svg></a></span></div>
+</div>
+
+</div>
+
+<script>
+(function(){
+var root=document.getElementById('root'); root.classList.add('js');
+var slides=[].slice.call(document.querySelectorAll('[data-slide]'));
+var dots=[].slice.call(document.querySelectorAll('[data-go]'));
+var i=0, manual=false, timer;
+function show(n){
+  i=(n+slides.length)%slides.length;
+  slides.forEach(function(s,k){s.classList.toggle('active',k===i); s.setAttribute('aria-hidden',k===i?'false':'true');});
+  dots.forEach(function(d,k){var b=d.querySelector('.pbar'); if(!b)return; b.classList.remove('run','full'); void b.offsetWidth; if(k===i) b.classList.add(manual?'full':'run');});
+}
+function start(){clearInterval(timer); timer=setInterval(function(){if(!manual)show(i+1);},6500);}
+dots.forEach(function(d,k){d.addEventListener('click',function(){manual=true;show(k);});});
+var p=document.querySelector('[data-prev]'), nx=document.querySelector('[data-next]');
+p&&p.addEventListener('click',function(){manual=true;show(i-1);});
+nx&&nx.addEventListener('click',function(){manual=true;show(i+1);});
+show(0); start();
+var cnts=[].slice.call(document.querySelectorAll('.cnt'));
+function count(){var t0=performance.now();cnts.forEach(function(c){c.textContent='0'});(function step(t){var q=Math.min(1,(t-t0)/1600),e=1-Math.pow(1-q,3);cnts.forEach(function(c){c.textContent=Math.round(+c.dataset.to*e)});if(q<1)requestAnimationFrame(step);})(t0);}
+var els=[].slice.call(document.querySelectorAll('.rv'));
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');if(x.target.id==='numeri')count();io.unobserve(x.target);}});},{threshold:0.12});
+els.forEach(function(e){io.observe(e)});
+})();
+
+(function(){
+var home=document.getElementById('view-home');
+/* vecchi indirizzi con # -> pagine vere (link condivisi, risultati di Google, segnalibri) */
+var VECCHI={'lo-studio':'/lo-studio',fiscale:'/servizi/fiscale-contabilita',lavoro:'/servizi/lavoro-paghe',controllo:'/servizi/controllo-di-gestione',holding:'/servizi/consulenza-holding',formazione:'/servizi/formazione',elevate:'/elevate',contatti:'/contatti',blog:'/approfondimenti',privacy:'/privacy',cookie:'/cookie','note-legali':'/note-legali',accedi:'/staff'};
+function route(){
+  var views=[].slice.call(document.querySelectorAll('.view'));
+  var h=location.hash.replace('#','');
+  if(VECCHI[h]&&!document.getElementById(h)){location.replace(VECCHI[h]);return;}
+  if(/^articolo-[a-z0-9-]+$/.test(h)){location.replace('/approfondimenti/'+h.slice(9));return;}
+  if(!home){views.forEach(function(v){v.hidden=false;v.querySelectorAll('.rv').forEach(function(e){e.classList.add('in')})});var t=h&&document.getElementById(h);if(t)t.scrollIntoView();return;}
+  var v=h&&document.getElementById('view-'+h);
+  var tgt=null; if(!(v&&v.classList.contains('view'))){var el0=h&&document.getElementById(h); var pv=el0&&el0.closest('.view'); if(pv){v=pv;tgt=el0;}}
+  if(v&&v.classList.contains('view')){home.hidden=true;views.forEach(function(x){x.hidden=x!==v});v.querySelectorAll('.rv').forEach(function(e){e.classList.add('in')});if(tgt){tgt.scrollIntoView();}else{window.scrollTo(0,0);}}
+  else{var was=home.hidden;home.hidden=false;views.forEach(function(x){x.hidden=true});var el=h&&document.getElementById(h);if(el){el.scrollIntoView();}else if(was){window.scrollTo(0,0);}}
+}
+window.addEventListener('hashchange',route);route();window.SL_route=route;
+[].slice.call(document.querySelectorAll('[data-filter]')).forEach(function(b){b.addEventListener('click',function(){
+  var f=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(function(x){x.classList.toggle('on',x===b)});
+  document.querySelectorAll('#blog-grid [data-cat]').forEach(function(c){c.style.display=(f==='Tutti'||c.dataset.cat===f)?'':'none'});
+});});
+
+})();
+
+(function(){
+var box=document.getElementById('quiz'); if(!box) return;
+var P=[
+{n:"Liquidità",q:"Sai quanto guadagni davvero, al netto, ogni mese?",o:[["Sì, con budget e flussi di cassa",2],["Più o meno, guardo il conto",1],["No, conosco solo il fatturato",0]],tip:"Margini, budget e flussi di cassa sono la base di ogni altra decisione: è il lavoro del controllo di gestione."},
+{n:"Fisco",q:"Hai un piano fiscale costruito sulla tua impresa?",o:[["Sì, aggiornato ogni anno",2],["Se ne parla a fine anno, con le dichiarazioni",1],["Pago quello che arriva",0]],tip:"Un check-up fiscale con un piano costruito sulla tua impresa è spesso la leva più rapida da attivare."},
+{n:"Patrimonio",q:"Il tuo patrimonio produce reddito?",o:[["Sì, è investito con una strategia",2],["In parte",1],["No, è fermo o è tutto in azienda",0]],tip:"Un patrimonio fermo può diventare un costo: va organizzato perché produca reddito."},
+{n:"Protezione",q:"Se domani arrivasse una causa o un problema con un socio, il tuo patrimonio personale sarebbe protetto?",o:[["Sì, ho strumenti dedicati",2],["Non ne sono sicuro",1],["No",0]],tip:"La protezione si costruisce quando l'impresa è sana, non quando arriva il problema."},
+{n:"Persone",q:"I tuoi collaboratori migliori hanno un motivo per restare, oltre allo stipendio?",o:[["Sì: progetto, incentivi, carriera",2],["Qualcuno sì",1],["Non ci ho mai pensato",0]],tip:"Incentivi, accordi e percorsi di crescita aiutano a tenere le persone giuste: è il lavoro dell'area lavoro e paghe."},
+{n:"Tu",q:"Quanto investi nella tua crescita come imprenditore?",o:[["Con continuità, ogni mese",2],["Ogni tanto",1],["Non ho tempo",0]],tip:"Un'azienda non supera mai il livello del suo leader: la formazione è il primo investimento."}
+];
+var ans=[], qi=0;
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function dots(){return P.map(function(p,i){return '<span style="width:24px;height:4px;border-radius:2px;background:'+(i<qi?'#D4A24C':(i===qi?'#0F2C5C':'#E2E8F1'))+'"></span>'}).join('')}
+function q(){
+  var p=P[qi];
+  box.innerHTML='<div class="qin"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px"><span class="mont up" style="font-size:12px;font-weight:800;letter-spacing:.14em;color:#9A6F1E">Domanda '+(qi+1)+' di 6 · '+p.n+'</span><span style="display:flex;gap:6px" aria-hidden="true">'+dots()+'</span></div>'
+   +'<p class="mont" style="margin:0 0 24px;font-size:26px;font-weight:700;line-height:1.25;color:#0F2C5C">'+esc(p.q)+'</p>'
+   +p.o.map(function(o,k){return '<button type="button" class="qopt'+(ans[qi]===o[1]?' sel':'')+'" data-k="'+k+'">'+esc(o[0])+'</button>'}).join('')
+   +(qi>0?'<button type="button" data-back style="font:inherit;font-size:14px;background:none;border:0;color:#5E6B85;cursor:pointer;padding:10px 0;min-height:44px">← Domanda precedente</button>':'')+'</div>';
+  box.querySelectorAll('.qopt').forEach(function(b){b.addEventListener('click',function(){ans[qi]=p.o[+b.dataset.k][1]; qi++; qi<6?q():res();});});
+  var bk=box.querySelector('[data-back]'); bk&&bk.addEventListener('click',function(){qi--;q();});
+}
+function res(){
+  var tot=ans.reduce(function(a,b){return a+b},0), w=0;
+  ans.forEach(function(a,i){if(a<ans[w])w=i});
+  var ver=tot>=10?"Impresa solida. Ora si tratta di mantenerla così.":(tot>=6?"Buone basi, ma alcuni pilastri vanno rafforzati.":"Ci sono pilastri da mettere in sicurezza, presto.");
+  var col=['#D9534F','#D4A24C','#3C9D6E'], wd=['15%','55%','100%'];
+  box.innerHTML='<div class="qin"><span class="mont up" style="font-size:12px;font-weight:800;letter-spacing:.14em;color:#9A6F1E">Il tuo risultato · '+tot+' su 12</span>'
+   +'<p class="mont" style="margin:12px 0 22px;font-size:28px;font-weight:800;line-height:1.15;color:#0F2C5C">'+ver+'</p>'
+   +P.map(function(p,i){return '<div style="display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;margin-bottom:10px"><span style="font-size:15px;color:#0F2C5C;font-weight:600">'+p.n+'</span><span class="qbar"><span data-w="'+wd[ans[i]]+'" style="background:'+col[ans[i]]+'"></span></span></div>'}).join('')
+   +'<p style="margin:18px 0 0;font-size:16px">Il pilastro da rafforzare per primo: <b style="color:#9A6F1E">'+P[w].n+'</b>. '+P[w].tip+'</p>'
+   +'<form data-lead style="margin-top:24px;padding-top:22px;border-top:1px solid #E2E8F1;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">'
+   +'<span class="mont" style="grid-column:1/-1;font-size:17px;font-weight:700;color:#0F2C5C">Vuoi parlarne con un consulente? Lasciaci i tuoi dati.</span>'
+   +'<label style="font-size:13px;font-weight:600;color:#0F2C5C">Nome e cognome<input class="qfield" name="nome" required autocomplete="name"></label>'
+   +'<label style="font-size:13px;font-weight:600;color:#0F2C5C">Telefono o email<input class="qfield" name="recapito" required autocomplete="email"></label>'
+   +'<label style="font-size:13px;font-weight:600;color:#0F2C5C">Forma dell\'attività<select class="qfield" name="forma"><option value="">Seleziona…</option><option>Ditta individuale</option><option>Libero professionista</option><option>Società di persone (snc, sas)</option><option>SRL</option><option>SpA o altra società</option><option>Non ho ancora un\'attività</option></select></label>'
+   +'<label style="font-size:13px;font-weight:600;color:#0F2C5C">Fatturato annuo<select class="qfield" name="fatturato"><option value="">Seleziona…</option><option>Fino a 250.000 €</option><option>250.000 – 1 milione €</option><option>1 – 5 milioni €</option><option>Oltre 5 milioni €</option><option>Preferisco non dirlo</option></select></label>'
+   +'<label style="grid-column:1/-1;display:flex;gap:8px;align-items:flex-start;font-size:13px"><input name="privacy" type="checkbox" required style="margin-top:3px">Acconsento a essere ricontattato dallo studio (<a href="/privacy" style="color:#9A6F1E">informativa privacy</a>).</label>'
+   +'<div style="grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button type="submit" class="btn btn-gold" style="border:0;cursor:pointer">Richiedi un check-up</button><button type="button" data-again style="font:inherit;font-size:14px;background:none;border:1px solid #C9D3E3;color:#0F2C5C;padding:13px 18px;border-radius:2px;cursor:pointer;min-height:48px">Rifai il test</button><span data-msg style="font-size:14px;color:#9A6F1E"></span></div></form></div>';
+  requestAnimationFrame(function(){setTimeout(function(){box.querySelectorAll('[data-w]').forEach(function(s){s.style.width=s.dataset.w})},60)});
+  box.querySelector('[data-again]').addEventListener('click',function(){ans=[];qi=0;q();});
+  box.querySelector('[data-lead]').addEventListener('submit',function(e){e.preventDefault();var f=e.target,m=box.querySelector('[data-msg]');var pil={};P.forEach(function(p,i){pil[p.n]=ans[i]});
+  window.SL.invia('/api/richiesta',{tipo:'test',nome:f.nome.value,recapito:f.recapito.value,privacy:f.privacy.checked,qualifica:{forma:f.forma.value,fatturato:f.fatturato.value},test:{punteggio:ans.reduce(function(a,b){return a+b},0),debole:P[w].n,pilastri:pil}},m,f,'Grazie! Ti ricontattiamo entro un giorno lavorativo per il check-up.');});
+}
+q();
+
+[].slice.call(document.querySelectorAll('[data-sfilter]')).forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.sfilter;document.querySelectorAll('[data-sfilter]').forEach(function(x){x.classList.toggle('on',x===b)});document.querySelectorAll('#social-grid .sp').forEach(function(c){c.style.display=(f==='all'||c.dataset.net===f)?'':'none'});});});
+})();
+
+/* ===== Sito online: moduli, post social e articoli dal database =====
+   Nell'anteprima (fuori da studiolongobardi.it) i moduli mostrano solo un messaggio di prova
+   e restano i contenuti di esempio. */
+(function(){
+var ONLINE=/(^|\.)studiolongobardi\.it$|\.vercel\.app$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+window.SL={online:ONLINE,esc:esc};
+
+window.SL.invia=function(url,dati,msg,form,okTesto){
+  if(!ONLINE){if(msg)msg.textContent='Anteprima: funzionerà quando il sito sarà online.';return Promise.resolve(null);}
+  dati.t=Math.round(performance.now());
+  var btn=form&&form.querySelector('[type=submit]');if(btn)btn.disabled=true;
+  if(msg)msg.textContent='Invio in corso…';
+  return fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dati)})
+    .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.error||'Invio non riuscito. Riprova o chiamaci allo 081 801 1388.');return j;});})
+    .then(function(j){if(msg)msg.textContent=okTesto;if(form)form.reset();try{window.SLConsenso&&SLConsenso.evento('Lead',{content_name:url})}catch(e){}try{window.va('event',{name:url==='/api/libro'?'Libro scaricato':url==='/api/strumenti'?'Strumenti Excel':url==='/api/iscrizione'?'Iscrizione':(dati.tipo==='test'?'Check-up dal test':'Richiesta contatto'),data:{area:dati.area||dati.lista||''}})}catch(e){}return j;})
+    .catch(function(e){if(msg)msg.textContent=e.message;return null;})
+    .then(function(j){if(btn)btn.disabled=false;return j;});
+};
+
+/* --- strumenti excel: bottoni di download dopo l'invio dei dati --- */
+function mostraStrumenti(L){
+  var b=document.getElementById('strumenti-bottoni'),box=document.getElementById('strumenti-link'),f=document.getElementById('strumenti-form');if(!b||!box)return;
+  b.innerHTML=L.map(function(x){return '<a class="btn btn-blue" href="'+esc(x.url)+'" download>'+esc(x.nome)+' (Excel)</a>'}).join('');
+  box.hidden=false;if(f)f.hidden=true;
+}
+try{var SS=JSON.parse(localStorage.getItem('sl-strumenti')||'null');if(SS&&SS.fino>Date.now()&&SS.file)mostraStrumenti(SS.file);}catch(e){}
+/* --- moduli --- */
+[].slice.call(document.querySelectorAll('form[data-invia]')).forEach(function(f){
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var m=f.querySelector('.msg'),t=f.getAttribute('data-invia'),v=function(n){var x=f.querySelector('[name='+n+']');return x?(x.type==='checkbox'?x.checked:x.value):''};
+    if(t==='libro'){
+      window.SL.invia('/api/libro',{nome:v('nome'),email:v('email'),telefono:v('telefono'),privacy:v('privacy'),marketing:v('marketing')},m,f,'Grazie! Il download sta partendo.').then(function(j){
+        if(j){var u=j.url||'/download/intelligenza-fiscale.pdf';
+          m.innerHTML='Grazie! Ecco il tuo libro: <a href="'+esc(u)+'" target="_blank" rel="noopener" class="btn btn-blue" style="margin-left:8px;padding:12px 20px">Apri Intelligenza Fiscale (PDF)</a>';
+          if(j.salvato&&window.console)console.log('libro:',j.salvato);}
+      });
+    }else if(t==='strumenti'){
+      window.SL.invia('/api/strumenti',{nome:v('nome'),email:v('email'),telefono:v('telefono'),azienda:v('azienda'),privacy:v('privacy'),marketing:v('marketing')},m,f,'Grazie! I tuoi modelli sono pronti qui sotto.').then(function(j){
+        if(j&&j.file){mostraStrumenti(j.file);try{localStorage.setItem('sl-strumenti',JSON.stringify({file:j.file,fino:Date.now()+23*3600e3}))}catch(e){}}
+      });
+    }else if(t==='iscrizione'){
+      window.SL.invia('/api/iscrizione',{email:v('email'),consenso:v('consenso'),lista:f.getAttribute('data-lista')},m,f,
+        f.getAttribute('data-lista')==='elevate'?'Fatto! Sarai tra i primi a sapere data e luogo di Elevate 2027.':'Fatto! Ti scriveremo quando pubblichiamo qualcosa di utile.');
+    }else{
+      window.SL.invia('/api/richiesta',{tipo:'contatto',nome:v('nome'),azienda:v('azienda'),email:v('email'),telefono:v('telefono'),area:v('area'),messaggio:v('messaggio'),privacy:v('privacy'),marketing:v('marketing'),qualifica:{forma:v('forma'),fatturato:v('fatturato'),dipendenti:v('dipendenti'),urgenza:v('urgenza')}},m,f,
+        'Grazie! Abbiamo ricevuto la tua richiesta: ti ricontattiamo entro un giorno lavorativo.');
+    }
+  });
+});
+/* moduli rimasti solo dimostrativi (es. accesso staff nell'anteprima) */
+[].slice.call(document.querySelectorAll('form.fake:not([data-invia])')).forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();var m=f.querySelector('.msg');if(m)m.textContent='Anteprima: funzionerà quando il sito sarà online.';});});
+
+if(!ONLINE)return;
+
+/* --- area staff: pagina separata --- */
+[].slice.call(document.querySelectorAll('[data-staff]')).forEach(function(a){a.href='/staff'});
+function vaiStaff(){if(location.hash==='#accedi')location.replace('/staff')}
+window.addEventListener('hashchange',vaiStaff);vaiStaff();
+
+/* --- post di Instagram e Facebook --- */
+var IG='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg>';
+var FB='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v7h4v-7h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"></path></svg>';
+var CAR='<span aria-hidden="true" style="position: absolute; right: 12px; top: 12px; width: 26px; height: 26px; color: #FFFFFF; filter: drop-shadow(0 1px 3px rgba(0,0,0,.6))"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="7" width="13" height="13" rx="2"></rect><path d="M4 16V5a1 1 0 0 1 1-1h11"></path></svg></span>';
+var PLAY='<span aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 64px; height: 64px; border-radius: 50%; background: rgba(10,31,68,.65); border: 2px solid #FFFFFF; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 22px; padding-left: 4px; box-sizing: border-box">▶</span>';
+function quando(d){
+  var t=new Date(d),g=Math.floor((Date.now()-t)/86400000);
+  if(isNaN(g))return'';if(g<1)return'oggi';if(g<2)return'ieri';if(g<7)return g+' giorni fa';if(g<35)return Math.floor(g/7)+(g<14?' settimana fa':' settimane fa');
+  return t.toLocaleDateString('it-IT',{day:'numeric',month:'long',year:(g>300?'numeric':undefined)});
+}
+function postCard(p,k){
+  var ig=p.rete==='ig',badge={reel:'Reel',video:'Video',carosello:'Carosello',foto:'Foto'}[p.tipo]||'Foto';
+  var img=/^https:\/\//.test(p.immagine||'')?p.immagine:'';
+  return '<a href="'+esc(p.link)+'" target="_blank" rel="noopener" class="card rv in d'+(k%3+1)+' sp" data-net="'+(ig?'ig':'fb')+'" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E8F1; border-radius: 2px; overflow: hidden; display: flex; flex-direction: column">'
+   +'<div class="zoom" style="position: relative; aspect-ratio: 1 / 1; background: #0F2C5C"><img src="'+esc(img)+'" alt="" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover">'
+   +(p.tipo==='reel'||p.tipo==='video'?PLAY:'')+(p.tipo==='carosello'?CAR:'')
+   +'<span class="mont up" style="position: absolute; left: 12px; top: 12px; padding: 5px 10px; background: rgba(10,31,68,.8); color: #FFFFFF; font-size: 10px; font-weight: 800; letter-spacing: .12em; border-radius: 2px">'+badge+'</span></div>'
+   +'<div style="padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1">'
+   +'<div style="display: flex; align-items: center; gap: 10px"><img src="img/logo-chiaro.png" alt="" style="width: 34px; height: 34px; border-radius: 50%; object-fit: cover; object-position: left center; background: #0F2C5C; padding: 4px; box-sizing: border-box"><span style="display: flex; flex-direction: column; line-height: 1.2"><b style="font-size: 14px; color: #0F2C5C">'+(ig?'studiolongobardi':'Studio Longobardi')+'</b><span style="font-size: 12px; color: #5E6B85">'+quando(p.pubblicato_il)+'</span></span>'
+   +'<span style="margin-left: auto; color: '+(ig?'#C13584':'#1877F2')+'" title="'+(ig?'Instagram':'Facebook')+'">'+(ig?IG:FB)+'</span></div>'
+   +'<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4762; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">'+esc(p.testo||'')+'</p>'
+   +'<span style="margin-top: auto; font-size: 13px; font-weight: 600; color: #9A6F1E">Vedi su '+(ig?'Instagram':'Facebook')+' →</span></div></a>';
+}
+var grid=document.getElementById('social-grid');
+function senzaPost(){
+  grid.innerHTML='<div style="grid-column: 1 / -1; background: #F3F6FB; border: 1px solid #E2E8F1; padding: 40px; text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center"><span class="mont" style="font-size: 22px; font-weight: 800; color: #0F2C5C">Le ultime novità le trovi sui nostri social</span><span style="color: #5E6B85">Video da Elevate, scadenze, consigli pratici: seguici per non perderle.</span><span style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center"><a href="https://www.instagram.com/studiolongobardi/" target="_blank" rel="noopener" class="btn btn-blue">Instagram</a><a href="https://www.facebook.com/studiolongobardi1/" target="_blank" rel="noopener" class="btn btn-lineb">Facebook</a></span></div>';
+  var nota=document.getElementById('social-nota');if(nota)nota.textContent='';
+  [].slice.call(document.querySelectorAll('[data-sfilter]')).forEach(function(b){b.style.display='none'});
+}
+if(grid)fetch('/api/social').then(function(r){return r.json()}).then(function(j){
+  if(!j||!j.post||!j.post.length){senzaPost();return;}
+  grid.innerHTML=j.post.map(postCard).join('');
+  [].slice.call(document.querySelectorAll('[data-sfilter]')).forEach(function(b){b.hidden=false;b.style.display=''});
+  var nota=document.getElementById('social-nota');if(nota)nota.textContent='Gli ultimi post, aggiornati in automatico';
+  var on=document.querySelector('[data-sfilter].on');if(on)on.click();
+}).catch(senzaPost);
+
+/* --- articoli del blog approvati --- */
+function inl(x){return esc(x).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
+function testo(t){
+  var out=[],li=null;
+  String(t||'').split(/\r?\n/).forEach(function(l){
+    l=l.trim();
+    if(/^[-•]\s+/.test(l)){(li=li||[]).push('<li style="margin-bottom: 8px">'+inl(l.replace(/^[-•]\s+/,''))+'</li>');return;}
+    if(li){out.push('<ul style="margin: 0 0 22px; padding-left: 22px">'+li.join('')+'</ul>');li=null;}
+    if(!l)return;
+    if(/^##\s+/.test(l))out.push('<h2 class="mont" style="margin: 38px 0 14px; font-size: 24px; font-weight: 800; line-height: 1.25; color: #0F2C5C">'+inl(l.replace(/^##\s+/,''))+'</h2>');
+    else out.push('<p style="margin: 0 0 22px">'+inl(l)+'</p>');
+  });
+  if(li)out.push('<ul style="margin: 0 0 22px; padding-left: 22px">'+li.join('')+'</ul>');
+  return out.join('');
+}
+function imgOk(u){return /^(img\/[\w.-]+|https:\/\/[^"'\s]+)$/.test(u||'')?u:'img/colonnato.jpg'}
+function data(d){var t=new Date(d);return isNaN(t)?'':t.toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'})}
+function avatar(a,n){
+  if(/^img\/[\w.-]+$/.test(a.autore_foto||''))return '<img src="'+esc(a.autore_foto)+'" alt="" style="width: '+n+'px; height: '+n+'px; flex: none; border-radius: 50%; object-fit: cover; object-position: center 22%'+(n>40?'; border: 2px solid #D4A24C':'')+'">';
+  var ini=String(a.autore_nome||'').split(/\s+/).filter(Boolean).slice(0,2).map(function(x){return x[0]}).join('').toUpperCase();
+  return '<span aria-hidden="true" class="mont" style="width: '+n+'px; height: '+n+'px; flex: none; border-radius: 50%; background: #D4A24C; color: #0A1F44; display: inline-flex; align-items: center; justify-content: center; font-size: '+Math.round(n*.36)+'px; font-weight: 800">'+esc(ini)+'</span>';
+}
+function slug(a){return String(a.slug).replace(/[^a-z0-9-]/g,'')}
+function aCard(a,k,bg){
+  return '<a href="/approfondimenti/'+slug(a)+'" class="card rv in d'+(k%3+1)+'" data-cat="'+esc(a.categoria)+'" style="text-decoration: none; background: '+bg+'; border-radius: 2px; overflow: hidden; display: flex; flex-direction: column">'
+   +'<div class="zoom" style="height: 190px"><img src="'+esc(imgOk(a.immagine))+'" alt="" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover"></div>'
+   +'<div style="padding: 24px; display: flex; flex-direction: column; gap: 10px; flex: 1"><span class="mont up" style="font-size: 11px; font-weight: 800; letter-spacing: .16em; color: #9A6F1E">'+esc(a.categoria)+'</span><span class="mont" style="font-size: 20px; font-weight: 700; line-height: 1.25; color: #0F2C5C">'+esc(a.titolo)+'</span><span style="font-size: 15px; color: #5E6B85">'+esc(a.sommario||'')+'</span>'
+   +'<span style="margin-top: auto; padding-top: 8px; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #5E6B85">'+avatar(a,30)+esc(a.autore_nome)+' · '+data(a.pubblicato_il)+'</span></div></a>';
+}
+function aItem(a){
+  return '<a href="/approfondimenti/'+slug(a)+'" data-novita style="padding: 16px 0; border-bottom: 1px solid #E2E8F1; display: flex; flex-direction: column; gap: 4px; text-decoration: none"><span class="mont up" style="font-size: 11px; font-weight: 800; letter-spacing: .14em; color: #9A6F1E">'+esc(a.categoria)+' · '+data(a.pubblicato_il)+'</span><span style="font-size: 15px; font-weight: 600; color: #0F2C5C; line-height: 1.4">'+esc(a.titolo)+'</span></a>';
+}
+fetch('/api/articoli').then(function(r){return r.json()}).then(function(j){
+  var A=j&&j.articoli;if(!A||!A.length)return;
+  var home=document.getElementById('home-articoli'),blog=document.getElementById('blog-grid');
+  if(home)home.innerHTML=A.slice(0,3).map(function(a,k){return aCard(a,k,'#F3F6FB')}).join('');
+  if(blog)blog.innerHTML=A.map(function(a,k){return aCard(a,k,'#F3F6FB')}).join('');
+  [].slice.call(document.querySelectorAll('[data-novita-box]')).forEach(function(box){
+    [].slice.call(box.querySelectorAll('a[href^="#articolo-"]')).forEach(function(x){x.remove()});
+    var tit=box.querySelector('span');tit.insertAdjacentHTML('afterend',A.slice(0,5).map(aItem).join(''));
+  });
+  var on=document.querySelector('[data-filter].on');if(on)on.click();
+}).catch(function(){});
+})();
+
+</script>
+</body>
+</html>

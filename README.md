@@ -71,3 +71,17 @@ Vercel → **Settings → Domains**: `studiolongobardi.it` e `www.studiolongobar
 
 ## Dove leggere i dati
 Area staff → **Richieste** (stato, note, export Excel). In alternativa Supabase → **Table Editor**: `richieste` (contatti e test, colonna `stato`), `richieste_libro`, `iscritti`, `articoli`, `post_social`.
+
+## Pagine del sito (dal 25/11/2026)
+
+Il sito non è più una pagina unica con le sezioni `#...`: ogni servizio e ogni sezione ha un indirizzo vero
+(`/servizi/fiscale-contabilita`, `/lo-studio`, `/contatti`, …), con titolo e descrizione propri per Google.
+
+- **Si modifica solo `sorgente/sito.html`**, poi si lancia `python3 strumenti/genera_pagine.py`:
+  rigenera `index.html`, le pagine in radice, `servizi/*.html` e il modello degli articoli `api/_modelli/articolo.html`.
+  I titoli e le descrizioni per Google delle pagine stanno in cima a `strumenti/genera_pagine.py`.
+- **Articoli**: `/approfondimenti/<slug>` è disegnato dal server (`api/articolo.js`) leggendo il database:
+  ogni articolo approvato nell'area staff ha subito la sua pagina, senza rigenerare nulla.
+- **Sitemap**: `/sitemap.xml` è generata da `api/sitemap.js` (pagine + articoli pubblicati).
+- I vecchi indirizzi con `#` (`/#holding`, `/#articolo-holding`, `/#contatti`, …) portano alla pagina nuova.
+- I dati dello studio per Google (indirizzo, orari, telefono) sono in `DATI_STUDIO` in `strumenti/genera_pagine.py`.

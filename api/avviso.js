@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   const a = await db(`articoli?id=eq.${id}&select=id,titolo,stato,autore_id,autore_nome,ok_direzione,ok_marketing,nota_revisione,slug`);
   if (!a.ok || !a.data || !a.data[0]) return res.status(404).json({ error: "Articolo non trovato" });
   const art = a.data[0];
-  const link = `https://www.studiolongobardi.it/#articolo-${art.slug}`;
+  const link = `https://www.studiolongobardi.it/approfondimenti/${art.slug}`;
 
   if (art.stato === "in_revisione") {
     const a1 = (process.env.NOTIFICA_EMAIL || "").trim();

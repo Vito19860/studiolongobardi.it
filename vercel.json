@@ -75,6 +75,14 @@
   ],
   "rewrites": [
     {
+      "source": "/approfondimenti/:slug",
+      "destination": "/api/articolo?slug=:slug"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
       "source": "/diagnostica",
       "destination": "/api/stato"
     }
@@ -82,6 +90,24 @@
   "functions": {
     "api/strumenti.js": {
       "includeFiles": "api/_strumenti/**"
+    },
+    "api/articolo.js": {
+      "includeFiles": "api/_modelli/**"
+    },
+    "api/sitemap.js": {
+      "includeFiles": "api/_modelli/**"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/servizi",
+      "destination": "/#servizi",
+      "permanent": false
+    },
+    {
+      "source": "/blog",
+      "destination": "/approfondimenti",
+      "permanent": true
+    }
+  ]
 }

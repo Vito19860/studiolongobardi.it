@@ -12,7 +12,7 @@
   var KEY = "sl-consenso";
   var VERSIONE = 1;               // aumentare se cambiano le categorie: il banner ricompare a tutti
   var DURATA = 182 * 864e5;       // 6 mesi
-  var POLICY = location.pathname === "/" || /index\.html$/.test(location.pathname) ? "#cookie" : "/#cookie";
+  var POLICY = "/cookie";
 
   function leggi() {
     try {
