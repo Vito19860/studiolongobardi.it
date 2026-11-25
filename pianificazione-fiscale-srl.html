@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://www.studiolongobardi.it/pianificazione-fiscale-srl">
 <link rel="canonical" href="https://www.studiolongobardi.it/pianificazione-fiscale-srl">
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/cookie.js?v=1"></script>
 <link rel="preload" href="fonts/montserrat.woff" as="font" type="font/woff" crossorigin>
 <style>
 @font-face{font-family:Montserrat;src:url(fonts/montserrat.woff) format("woff");font-weight:500 800;font-display:swap}
@@ -261,7 +261,7 @@ footer a{color:#E9BE6E}
 
 <footer><div class="wrap">
   <span>Studio Longobardi · ADVANCE STP S.r.l. · P.IVA 08187871218 · Via Castellammare 71, 80054 Gragnano (NA)</span>
-  <span><a href="/">Sito dello studio</a> · <a href="/#privacy">Privacy</a> · <a href="/#cookie">Cookie</a> · <a href="/#note-legali">Note legali</a></span>
+  <span><a href="/">Sito dello studio</a> · <a href="/#privacy">Privacy</a> · <a href="/#cookie">Cookie</a> · <a href="#" data-cookie-preferenze>Preferenze cookie</a> · <a href="/#note-legali">Note legali</a></span>
 </div></footer>
 
 <script>
@@ -279,7 +279,7 @@ f.addEventListener('submit',function(e){
   b.disabled=true;m.textContent='Invio in corso…';
   fetch('/api/richiesta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
   .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.error||'Invio non riuscito. Chiamaci allo 081 801 1388.');})})
-  .then(function(){try{window.va('event',{name:'Richiesta landing SRL',data:{fatturato:d.qualifica.fatturato||''}})}catch(e){}f.innerHTML='<div class="tutta" style="padding:20px 0"><h2 style="font-size:28px">Grazie!</h2><p>Abbiamo ricevuto la tua richiesta: un professionista dello studio ti ricontatta entro un giorno lavorativo.</p><a class="btn btn-gold" href="/">Visita il sito dello studio</a></div>';})
+  .then(function(){try{window.SLConsenso&&SLConsenso.evento('Lead',{content_name:'Landing SRL'});window.va('event',{name:'Richiesta landing SRL',data:{fatturato:d.qualifica.fatturato||''}})}catch(e){}f.innerHTML='<div class="tutta" style="padding:20px 0"><h2 style="font-size:28px">Grazie!</h2><p>Abbiamo ricevuto la tua richiesta: un professionista dello studio ti ricontatta entro un giorno lavorativo.</p><a class="btn btn-gold" href="/">Visita il sito dello studio</a></div>';})
   .catch(function(e){m.textContent=e.message;b.disabled=false;});
 });
 })();
@@ -392,7 +392,7 @@ gf.addEventListener('submit',function(e){
   btn.disabled=true;btn.textContent='Un attimo…';
   fetch('/api/richiesta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dati)})
   .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.error||'Non siamo riusciti a registrare la richiesta. Riprova tra poco.')})})
-  .then(function(){try{window.va('event',{name:'Simulatore detassazione',data:{risparmio:risp}})}catch(_){}apri()})
+  .then(function(){try{window.SLConsenso&&SLConsenso.evento('Lead',{content_name:'Simulatore'});window.va('event',{name:'Simulatore detassazione',data:{risparmio:risp}})}catch(_){}apri()})
   .catch(function(e){out.textContent=e.message;btn.disabled=false;btn.textContent='Mostra il risultato'});
 });
 /* barretta del risultato sul telefono */
